@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_cons_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/login_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002" />
+
+    <LinearLayout
+        android:id="@+id/layout_wrapper"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="@id/login_title_text"
+        app:layout_constraintStart_toStartOf="@id/login_title_text"
+        app:layout_constraintTop_toBottomOf="@+id/login_title_text">
+
+        <EditText
+            android:id="@+id/login_email_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/email_placeholder"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/login_password_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/password_placeholder"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/login_submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/login_title" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login_register_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_register_link"
+        app:layout_constraintEnd_toEndOf="@+id/layout_wrapper"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/layout_wrapper"
+        app:layout_constraintTop_toBottomOf="@+id/layout_wrapper" />
+
+    <TextView
+        android:id="@+id/register_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/register_title"
+        app:layout_constraintBottom_toBottomOf="@+id/login_register_link"
+        app:layout_constraintStart_toEndOf="@+id/login_register_link"
+        app:layout_constraintTop_toTopOf="@+id/login_register_link" />
+</androidx.constraintlayout.widget.ConstraintLayout>
