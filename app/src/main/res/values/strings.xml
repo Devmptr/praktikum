@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Praktikum</string>
     <string name="login_title">Login</string>
+    <string name="logout_title">Logout</string>
     <string name="register_title">Register</string>
     <string name="login_register_link">Don\'t Have Account? </string>
     <string name="register_login_link">Already Have Account? </string>

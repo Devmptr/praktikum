@@ -1,4 +1,4 @@
-package com.example.praktikum;
+package com.kelompokv.praktikum;
 
 import android.content.Context;
 
