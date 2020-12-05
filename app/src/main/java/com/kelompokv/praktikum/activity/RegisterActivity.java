@@ -3,7 +3,6 @@ package com.kelompokv.praktikum.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.api.Client;
-import com.kelompokv.praktikum.api.Interface;
-import com.kelompokv.praktikum.model.auth.Login;
+import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.model.auth.Register;
+import com.kelompokv.praktikum.network.service.AuthService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_register;
     TextView btn_view_login;
     EditText form_email,form_password,form_name;
-    Interface mApiInterface;
+    AuthService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +36,12 @@ public class RegisterActivity extends AppCompatActivity {
         form_password = (EditText) findViewById(R.id.register_password_form);
         form_name = (EditText) findViewById(R.id.register_name_form);
 
-        mApiInterface = Client.getClient().create(Interface.class);
+        service = Client.getClient().create(AuthService.class);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Register> postRegisterExe = mApiInterface.postRegister(form_name.getText().toString(),
+                Call<Register> postRegisterExe = service.postRegister(form_name.getText().toString(),
                         form_email.getText().toString(), form_password.getText().toString(),
                         form_password.getText().toString());
 

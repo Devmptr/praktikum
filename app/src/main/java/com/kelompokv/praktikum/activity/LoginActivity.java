@@ -2,8 +2,8 @@ package com.kelompokv.praktikum.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kelompokv.praktikum.api.Client;
-import com.kelompokv.praktikum.api.Interface;
+import com.kelompokv.praktikum.network.Client;
+import com.kelompokv.praktikum.network.service.AuthService;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login;
     TextView btn_view_register;
     EditText form_email,form_password;
-    Interface mApiInterface;
+    AuthService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         btn_login = (Button) findViewById(R.id.login_submit_btn);
-        btn_view_register = (TextView) findViewById(R.id.login_register_link);
+        btn_view_register = (TextView) findViewById(R.id.register_link);
         form_email = (EditText) findViewById(R.id.login_email_form);
         form_password = (EditText) findViewById(R.id.login_password_form);
 
-        mApiInterface = Client.getClient().create(Interface.class);
+        service = Client.getClient().create(AuthService.class);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Login> postLoginExe = mApiInterface.postLogin(form_email.getText().toString(),
+                Call<Login> postLoginExe = service.postLogin(form_email.getText().toString(),
                         form_password.getText().toString());
 
                 postLoginExe.enqueue(new Callback<Login>() {
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Login> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error",
+                        Toast.makeText(getApplicationContext(), "Error" + t,
                                 Toast.LENGTH_SHORT).show();
                     }
                 });

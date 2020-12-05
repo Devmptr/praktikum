@@ -8,4 +8,29 @@
     <string name="email_placeholder">Email</string>
     <string name="password_placeholder">Password</string>
     <string name="name_placeholder">Name</string>
+
+    <string name="add_data_placeholder">Add Data</string>
+    <string name="update_data_placeholder">Update Data</string>
+    <string name="delete_data_placeholder">Delete Data</string>
+    <string name="placeholder_nama">Nama</string>
+    <string name="placeholder_jenis_kelamin">Jenis Kelamin</string>
+    <string name="placeholder_tempat_lahir">Tempat Lahir</string>
+    <string name="placeholder_tanggal_lahir">Tanggal Lahir</string>
+    <string name="placeholder_agama">Agama</string>
+    <string name="placeholder_pendidikan">Pendidikan</string>
+    <string name="placeholder_pekerjaan">Pekerjaan</string>
+    <string name="placeholder_tipe">Tipe</string>
+    <string name="placeholder_ayah">Ayah</string>
+    <string name="placeholder_ibu">Ibu</string>
+
+    <string-array name="spinner_jenis_kelamin">
+        <item>LAKI-LAKI</item>
+        <item>PEREMPUAN</item>
+    </string-array>
+
+    <string-array name="spinner_tipe">
+        <item>Suami</item>
+        <item>Istri</item>
+        <item>Anak</item>
+    </string-array>
 </resources>

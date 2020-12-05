@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kelompokv.praktikum.activity.user.CreateData">
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:id="@+id/form_create_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+      <LinearLayout
+          android:id="@+id/form_group_name"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_nama" />
+
+        <EditText
+            android:id="@+id/c_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_group_jenis_kelamin"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_jenis_kelamin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_jenis_kelamin" />
+
+<!--        <EditText-->
+<!--            android:id="@+id/c_jenis_kelamin"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"/>-->
+        <Spinner
+            android:id="@+id/c_jenis_kelamin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinner_jenis_kelamin"
+            android:padding="12dp" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_group_tempat_lahir"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_tempat_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_tempat_lahir" />
+
+        <EditText
+            android:id="@+id/c_tempat_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_group_tanggal_lahir"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_tanggal_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_tanggal_lahir" />
+
+        <EditText
+            android:id="@+id/c_tanggal_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="YYYY-MM-DD"
+            android:inputType="date" />
+
+<!--        <EditText-->
+<!--            android:id="@+id/c_tanggal_lahir"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"/>-->
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_group_agama"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_agama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_agama" />
+
+        <EditText
+            android:id="@+id/c_agama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_pendidikan"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_pendidikan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_pendidikan" />
+
+        <EditText
+            android:id="@+id/c_pendidikan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_pekerjaan"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_pekerjaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_pekerjaan" />
+
+        <EditText
+            android:id="@+id/c_pekerjaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_tipe"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_tipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_tipe" />
+
+<!--        <EditText-->
+<!--            android:id="@+id/c_tipe"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="textPersonName"/>-->
+
+            <Spinner
+                android:id="@+id/c_tipe"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinner_tipe"
+                android:padding="12dp" />
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_ayah"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_ayah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_ayah" />
+
+        <EditText
+            android:id="@+id/c_ayah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/form_ibu"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="16dp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ph_ibu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_ibu" />
+
+        <EditText
+            android:id="@+id/c_ibu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+      </LinearLayout>
+
+      <Button
+          android:id="@+id/btn_create_anggota"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/add_data_placeholder" />
+    </LinearLayout>
+  </ScrollView>
+  </androidx.constraintlayout.widget.ConstraintLayout>
