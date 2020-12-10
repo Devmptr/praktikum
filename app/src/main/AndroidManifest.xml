@@ -12,9 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewAnggota"></activity>
-        <activity android:name=".activity.user.CreateData"></activity>
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.admin.DashboardAdminActivity"></activity>
+        <activity android:name=".ViewAnggota" />
+        <activity android:name=".activity.user.CreateData" />
+        <activity android:name=".activity.user.MainActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
