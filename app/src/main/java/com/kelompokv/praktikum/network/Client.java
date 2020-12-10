@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Client {
     public static Retrofit retrofit;
-    public static final String BASE_URL = "http://192.168.43.241:8000/api/";
+    public static final String BASE_URL = "http://devapi.pemirahimanikaunud.web.id/api/";
 
     public static Retrofit getClient(){
         if (retrofit == null){
