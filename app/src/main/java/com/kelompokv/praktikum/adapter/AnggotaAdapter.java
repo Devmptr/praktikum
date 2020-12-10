@@ -1,21 +1,16 @@
 package com.kelompokv.praktikum.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.ViewAnggota;
-import com.kelompokv.praktikum.activity.MainActivity;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 
 import java.text.DateFormat;

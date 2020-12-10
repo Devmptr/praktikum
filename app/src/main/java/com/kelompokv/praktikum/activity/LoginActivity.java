@@ -2,6 +2,8 @@ package com.kelompokv.praktikum.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
+import com.kelompokv.praktikum.activity.user.MainActivity;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AuthService;
 
@@ -26,9 +28,13 @@ public class LoginActivity extends AppCompatActivity {
     TextView btn_view_register;
     EditText form_email,form_password;
     AuthService service;
+    String token, role;
+    SharedPreferences auth_sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkAuth();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -36,42 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         btn_view_register = (TextView) findViewById(R.id.register_link);
         form_email = (EditText) findViewById(R.id.login_email_form);
         form_password = (EditText) findViewById(R.id.login_password_form);
-
         service = Client.getClient().create(AuthService.class);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Login> postLoginExe = service.postLogin(form_email.getText().toString(),
-                        form_password.getText().toString());
-
-                postLoginExe.enqueue(new Callback<Login>() {
-                    @Override
-                    public void onResponse(Call<Login> call, Response<Login> response) {
-                        if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Login Berhasil",
-                                    Toast.LENGTH_SHORT).show();
-
-                            SharedPreferences sgSharedPref = getApplicationContext().
-                                    getSharedPreferences("sq_shared_pref", getApplicationContext().MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sgSharedPref.edit();
-                            String token = String.valueOf(response.body().getSuccess().getToken());
-                            editor.putString("token", token);
-                            editor.apply();
-
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Login Gagal",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Login> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error" + t,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                authLogin(form_email.getText().toString(), form_password.getText().toString());
             }
         });
 
@@ -79,6 +55,61 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+    }
+
+    private void checkAuth(){
+        auth_sp = getApplicationContext().getSharedPreferences("authSharedPreferences",
+                getApplicationContext().MODE_PRIVATE);
+        if (auth_sp.contains("token")) {
+            String check_role = auth_sp.getString("role", "");
+            if (check_role.equals("user")){
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }else if(check_role.equals("admin")){
+                startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
+            }
+        }
+    }
+
+    private void authLogin(String in_email, String in_password){
+        Call<Login> postLoginExe = service.postLogin(in_email, in_password);
+
+        postLoginExe.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Login Berhasil",
+                            Toast.LENGTH_SHORT).show();
+
+                    auth_sp = getApplicationContext().getSharedPreferences("authSharedPreferences",
+                            getApplicationContext().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = auth_sp.edit();
+                    token = String.valueOf(response.body().getSuccess().getToken());
+                    role = String.valueOf(response.body().getRole());
+                    System.out.print(role);
+                    editor.putString("token", token);
+                    editor.putString("role", role);
+                    editor.apply();
+
+                    if(role.equals("user")){
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }else if(role.equals("admin")){
+                        startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Failed to Find Role",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Login Gagal",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error" + t,
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

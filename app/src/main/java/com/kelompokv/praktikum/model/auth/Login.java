@@ -8,7 +8,13 @@ public class Login {
     @Expose
     private Token success;
 
-    public  Token getSuccess(){
+    @SerializedName("role")
+    @Expose
+    private String role;
+
+    public Token getSuccess(){
         return success;
     }
+
+    public String getRole(){ return role; }
 }
