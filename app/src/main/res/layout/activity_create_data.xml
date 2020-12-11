@@ -55,12 +55,6 @@
             android:layout_height="wrap_content"
             android:text="@string/placeholder_jenis_kelamin" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/c_jenis_kelamin"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ems="10"-->
-<!--            android:inputType="textPersonName"/>-->
         <Spinner
             android:id="@+id/c_jenis_kelamin"
             android:layout_width="fill_parent"
@@ -111,12 +105,6 @@
             android:hint="YYYY-MM-DD"
             android:inputType="date" />
 
-<!--        <EditText-->
-<!--            android:id="@+id/c_tanggal_lahir"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ems="10"-->
-<!--            android:inputType="textPersonName"/>-->
       </LinearLayout>
 
       <LinearLayout
@@ -194,13 +182,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/placeholder_tipe" />
-
-<!--        <EditText-->
-<!--            android:id="@+id/c_tipe"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:ems="10"-->
-<!--            android:inputType="textPersonName"/>-->
 
             <Spinner
                 android:id="@+id/c_tipe"

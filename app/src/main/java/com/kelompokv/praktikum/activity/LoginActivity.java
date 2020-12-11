@@ -3,6 +3,7 @@ package com.kelompokv.praktikum.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
+import com.kelompokv.praktikum.activity.user.FirstLoginActivity;
 import com.kelompokv.praktikum.activity.user.MainActivity;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AuthService;
@@ -10,6 +11,7 @@ import com.kelompokv.praktikum.network.service.AuthService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,11 +31,12 @@ public class LoginActivity extends AppCompatActivity {
     EditText form_email,form_password;
     AuthService service;
     String token, role;
+    Boolean is_profile;
     SharedPreferences auth_sp;
+    Integer user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        checkAuth();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -43,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
         form_email = (EditText) findViewById(R.id.login_email_form);
         form_password = (EditText) findViewById(R.id.login_password_form);
         service = Client.getClient().create(AuthService.class);
+
+        checkAuth();
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
     private void checkAuth(){
         auth_sp = getApplicationContext().getSharedPreferences("authSharedPreferences",
                 getApplicationContext().MODE_PRIVATE);
+        Log.e("Response body", auth_sp.getString("token", ""));
+        Log.e("Response body", auth_sp.getString("role", ""));
         if (auth_sp.contains("token")) {
             String check_role = auth_sp.getString("role", "");
             if (check_role.equals("user")){
@@ -87,13 +94,21 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = auth_sp.edit();
                     token = String.valueOf(response.body().getSuccess().getToken());
                     role = String.valueOf(response.body().getRole());
-                    System.out.print(role);
+                    is_profile = response.body().getIs_profile();
+                    user_id = response.body().getId();
+
                     editor.putString("token", token);
                     editor.putString("role", role);
+                    editor.putInt("log_id", user_id);
                     editor.apply();
 
                     if(role.equals("user")){
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        Log.d("is Profile", is_profile.toString());
+                        if (is_profile) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        }else{
+                            startActivity(new Intent(LoginActivity.this, FirstLoginActivity.class));
+                        }
                     }else if(role.equals("admin")){
                         startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
                     }else{

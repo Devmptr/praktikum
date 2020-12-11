@@ -57,7 +57,9 @@ public class CreateData extends AppCompatActivity {
                         c_pekerjaan.getText().toString(),
                         c_tipe.getSelectedItem().toString(),
                         c_ayah.getText().toString(),
-                        c_ibu.getText().toString()
+                        c_ibu.getText().toString(),
+                        5,
+                        0
                 );
 
                 storeAnggotaExe.enqueue(new Callback<CUDAnggota>() {

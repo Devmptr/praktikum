@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,12 +49,18 @@ public class RegisterActivity extends AppCompatActivity {
                 postRegisterExe.enqueue(new Callback<Register>() {
                     @Override
                     public void onResponse(Call<Register> call, Response<Register> response) {
+                        Log.d("Call request", call.request().toString());
+                        Log.d("Call request header", call.request().headers().toString());
+                        Log.d("Response raw header", response.headers().toString());
+                        Log.d("Response raw", String.valueOf(response.raw().body()));
+                        Log.d("Response code", String.valueOf(response.code()));
                         if (response.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Register Berhasil",
                                     Toast.LENGTH_SHORT).show();
 
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         }else{
+                            Log.e("Response failed", response.errorBody().toString());
                             Toast.makeText(getApplicationContext(), "Register Gagal",
                                     Toast.LENGTH_SHORT).show();
                         }

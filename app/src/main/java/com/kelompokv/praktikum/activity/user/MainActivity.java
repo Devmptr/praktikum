@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            startActivity(new Intent(MainActivity.this, CreateData.class));
+                startActivity(new Intent(MainActivity.this, CreateData.class));
             }
         });
 
@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void logout() {
         auth_sp.edit().clear().commit();
+        Log.e("Response body", auth_sp.getString("token", ""));
+        Log.e("Response body", auth_sp.getString("role", ""));
 
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
@@ -101,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
                     show(response.body().getAnggota());
                 }
                 else  {
-                    Log.d("Response errorBody", String.valueOf(response.errorBody()));
+                    Log.e("Response errorBody", String.valueOf(response.errorBody()));
                 }
             }
 
             @Override
             public void onFailure(Call<AnggotaKeluargaResult> call, Throwable t) {
-
+                Log.e("Response errorDev", String.valueOf(t.getMessage()));
             }
         });
     }
