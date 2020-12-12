@@ -12,7 +12,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/list_name"
+            android:id="@+id/item_keluarga_alamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
@@ -20,10 +20,10 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/list_info"
+            android:id="@+id/item_keluarga_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text= "@string/app_name" />
 
     </LinearLayout>
 </LinearLayout>

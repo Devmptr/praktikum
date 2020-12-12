@@ -16,9 +16,9 @@ import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import java.text.DateFormat;
 import java.util.List;
 
-public class AnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
-    public AnggotaAdapter (@NonNull Context context, int resource, @NonNull List<AnggotaKeluarga>
-                           objects) {
+public class AdminAnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
+    public AdminAnggotaAdapter (@NonNull Context context, int resource, @NonNull List<AnggotaKeluarga>
+            objects) {
         super(context, resource, objects);
     }
 
@@ -36,9 +36,9 @@ public class AnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
         TextView name = (TextView) convertView.findViewById(R.id.list_name);
         name.setText(anggota.getNama());
 
-        TextView tanggal_lahir = (TextView) convertView.findViewById(R.id.list_info);
+        TextView info = (TextView) convertView.findViewById(R.id.list_info);
         DateFormat date = DateFormat.getDateInstance();
-        tanggal_lahir.setText(date.format(anggota.getTanggallahir()).toString());
+        info.setText(date.format(anggota.getTanggallahir()).toString() +" | "+anggota.getValidated());
 
         return convertView;
     }

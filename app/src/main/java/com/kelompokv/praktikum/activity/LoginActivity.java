@@ -70,12 +70,21 @@ public class LoginActivity extends AppCompatActivity {
         Log.e("Response body", auth_sp.getString("token", ""));
         Log.e("Response body", auth_sp.getString("role", ""));
         if (auth_sp.contains("token")) {
+            Toast.makeText(getApplicationContext(), "CONTAIN TOKEN",
+                    Toast.LENGTH_SHORT).show();
             String check_role = auth_sp.getString("role", "");
             if (check_role.equals("user")){
+                Toast.makeText(getApplicationContext(), "USER",
+                        Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }else if(check_role.equals("admin")){
+                Toast.makeText(getApplicationContext(), "ADMIN",
+                        Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
             }
+        }else{
+            Toast.makeText(getApplicationContext(), "NO CONTAIN",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

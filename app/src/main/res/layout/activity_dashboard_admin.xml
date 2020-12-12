@@ -6,4 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".activity.admin.DashboardAdminActivity">
 
+    <LinearLayout
+        android:id="@+id/wrapper_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_admin_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User" />
+
+        <Button
+            android:id="@+id/btn_admin_keluarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keluarga" />
+
+        <Button
+            android:id="@+id/btn_admin_anggota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anggota Keluarga" />
+
+        <Button
+            android:id="@+id/btn_admin_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

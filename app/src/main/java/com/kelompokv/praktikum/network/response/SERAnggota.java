@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 
-import java.util.List;
 
 public class SERAnggota {
     @SerializedName("anggota")

@@ -3,6 +3,7 @@ package com.kelompokv.praktikum.activity.user;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,9 @@ public class CreateData extends AppCompatActivity {
     EditText c_nama, c_tempat_lahir, c_tanggal_lahir, c_agama, c_pendidikan, c_pekerjaan, c_ayah, c_ibu;
     Button btn_create;
     AnggotaService service;
+    SharedPreferences auth_sp;
+    private Integer user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,10 @@ public class CreateData extends AppCompatActivity {
 
         service = Client.getClient().create(AnggotaService.class);
 
+        auth_sp = getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor;
+        user_id = auth_sp.getInt("log_id", 0);
+
         btn_create = (Button) findViewById(R.id.btn_create_anggota);
         btn_create.setOnClickListener(new View.OnClickListener () {
             @Override
@@ -58,8 +66,7 @@ public class CreateData extends AppCompatActivity {
                         c_tipe.getSelectedItem().toString(),
                         c_ayah.getText().toString(),
                         c_ibu.getText().toString(),
-                        5,
-                        0
+                        user_id
                 );
 
                 storeAnggotaExe.enqueue(new Callback<CUDAnggota>() {

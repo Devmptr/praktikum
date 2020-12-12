@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.user.ViewAnggota">
-
+    tools:context=".activity.admin.anggota.CreateAnggotaActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,13 +14,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/form_create_wrapper"
+            android:id="@+id/admin_anggota_create_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/form_group_name"
+                android:id="@+id/admin_anggota_group_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
@@ -34,7 +33,7 @@
                     android:text="@string/placeholder_nama" />
 
                 <EditText
-                    android:id="@+id/u_nama"
+                    android:id="@+id/aacreate_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -55,7 +54,7 @@
                     android:text="@string/placeholder_jenis_kelamin" />
 
                 <Spinner
-                    android:id="@+id/u_jenis_kelamin"
+                    android:id="@+id/aacreate_jenis_kelamin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_jenis_kelamin"
@@ -76,7 +75,7 @@
                     android:text="@string/placeholder_tempat_lahir" />
 
                 <EditText
-                    android:id="@+id/u_tempat_lahir"
+                    android:id="@+id/aacreate_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -97,7 +96,7 @@
                     android:text="@string/placeholder_tanggal_lahir" />
 
                 <EditText
-                    android:id="@+id/u_tanggal_lahir"
+                    android:id="@+id/aacreate_tanggal_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -120,7 +119,7 @@
                     android:text="@string/placeholder_agama" />
 
                 <EditText
-                    android:id="@+id/u_agama"
+                    android:id="@+id/aacreate_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -141,7 +140,7 @@
                     android:text="@string/placeholder_pendidikan" />
 
                 <EditText
-                    android:id="@+id/u_pendidikan"
+                    android:id="@+id/aacreate_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -162,7 +161,7 @@
                     android:text="@string/placeholder_pekerjaan" />
 
                 <EditText
-                    android:id="@+id/u_pekerjaan"
+                    android:id="@+id/aacreate_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -183,7 +182,7 @@
                     android:text="@string/placeholder_tipe" />
 
                 <Spinner
-                    android:id="@+id/u_tipe"
+                    android:id="@+id/aacreate_tipe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_tipe"
@@ -204,7 +203,7 @@
                     android:text="@string/placeholder_ayah" />
 
                 <EditText
-                    android:id="@+id/u_ayah"
+                    android:id="@+id/aacreate_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -225,7 +224,7 @@
                     android:text="@string/placeholder_ibu" />
 
                 <EditText
-                    android:id="@+id/u_ibu"
+                    android:id="@+id/aacreate_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -233,26 +232,52 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/form_button"
+                android:id="@+id/form_group_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ph_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User Account" />
+
+                <Spinner
+                    android:id="@+id/aacreate_id_user"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/spinner_id_user"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/form_group_validasi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ph_validasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_validasi" />
+
+                <Spinner
+                    android:id="@+id/aacreate_validasi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/spinner_validasi"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/aacreate_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_update_anggota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/update_data_placeholder" />
-
-                <Button
-                    android:id="@+id/btn_delete_anggota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/delete_data_placeholder" />
-            </LinearLayout>
+                android:text="@string/add_data_placeholder" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

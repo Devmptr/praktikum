@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kelompokv.praktikum.activity.user.MainActivity">
+    tools:context=".activity.admin.user.IndexUserActivity">
 
     <ListView
-        android:id="@+id/list_anggota"
+        android:id="@+id/alist_user"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/action_menu"
+        app:layout_constraintBottom_toTopOf="@+id/aaction_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/action_menu"
+        android:id="@+id/aaction_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -27,18 +27,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/btn_create_data"
+            android:id="@+id/a_user_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:text="@string/add_data_placeholder" />
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/logout_title" />
+            android:text="Add User" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

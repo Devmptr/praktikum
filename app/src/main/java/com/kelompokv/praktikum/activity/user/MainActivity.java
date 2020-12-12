@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.ViewAnggota;
 import com.kelompokv.praktikum.activity.LoginActivity;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.adapter.AnggotaAdapter;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_logout, btn_create;
     String role;
     SharedPreferences auth_sp;
+    private Integer user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         auth_sp = getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor;
+        user_id = auth_sp.getInt("log_id", 0);
 
         if (!auth_sp.contains("token")) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadAnggota();
+        loadAnggota(user_id);
 
         list_view = (ListView) findViewById(R.id.list_anggota);
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,29 +90,31 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
-    private void loadAnggota() {
-        AnggotaService service = Client.getClient().create(AnggotaService.class);
-        Call<AnggotaKeluargaResult> anggotas = service.getAnggota();
-        anggotas.enqueue(new Callback<AnggotaKeluargaResult>() {
-            @Override
-            public void onResponse(Call<AnggotaKeluargaResult> call, Response<AnggotaKeluargaResult> response) {
-                if(response.isSuccessful()) {
-                    //you can do whatever with the response body now...
-                    String responseBodyString= response.body().getAnggota().toString();
-                    Log.d("Response body", responseBodyString);
+    private void loadAnggota(Integer id) {
+        if (id != 0){
+            AnggotaService service = Client.getClient().create(AnggotaService.class);
+            Call<AnggotaKeluargaResult> anggotas = service.getAnggota(id);
+            anggotas.enqueue(new Callback<AnggotaKeluargaResult>() {
+                @Override
+                public void onResponse(Call<AnggotaKeluargaResult> call, Response<AnggotaKeluargaResult> response) {
+                    if(response.isSuccessful()) {
+                        //you can do whatever with the response body now...
+                        String responseBodyString= response.body().getAnggota().toString();
+                        Log.d("Response body", responseBodyString);
 
-                    show(response.body().getAnggota());
+                        show(response.body().getAnggota());
+                    }
+                    else  {
+                        Log.e("Response errorBody", String.valueOf(response.errorBody()));
+                    }
                 }
-                else  {
-                    Log.e("Response errorBody", String.valueOf(response.errorBody()));
-                }
-            }
 
-            @Override
-            public void onFailure(Call<AnggotaKeluargaResult> call, Throwable t) {
-                Log.e("Response errorDev", String.valueOf(t.getMessage()));
-            }
-        });
+                @Override
+                public void onFailure(Call<AnggotaKeluargaResult> call, Throwable t) {
+                    Log.e("Response errorDev", String.valueOf(t.getMessage()));
+                }
+            });
+        }
     }
 
     public void show(List<AnggotaKeluarga> anggotas){

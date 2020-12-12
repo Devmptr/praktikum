@@ -5,8 +5,10 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 
+
 public class AnggotaKeluarga {
-    @SerializedName("id") @Expose private String id;
+    private String emailuser;
+    @SerializedName("id") @Expose private Integer id;
     @SerializedName("nama") @Expose private String nama;
     @SerializedName("nik") @Expose private String nik;
     @SerializedName("jenis_kelamin") @Expose private String jenis_kelamin;
@@ -18,8 +20,9 @@ public class AnggotaKeluarga {
     @SerializedName("tipe") @Expose private String tipe;
     @SerializedName("ayah") @Expose private String ayah;
     @SerializedName("ibu") @Expose private String ibu;
+    @SerializedName("validated") @Expose private String validated;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -67,7 +70,7 @@ public class AnggotaKeluarga {
         return ibu;
     }
 
-    public String getJenis_kelamin() {
-        return jenis_kelamin;
+    public String getValidated() {
+        return validated;
     }
 }

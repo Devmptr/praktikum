@@ -17,8 +17,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface AnggotaService {
-    @GET(Endpoint.USER_ANGGOTA_BASE)
-    Call<AnggotaKeluargaResult> getAnggota();
+    @GET(Endpoint.USER_ANGGOTA_SELECTED)
+    Call<AnggotaKeluargaResult> getAnggota(@Path(value = "id", encoded = true) Integer id);
 
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
@@ -55,7 +55,6 @@ public interface AnggotaService {
                                   @Field("tipe") String tipe,
                                   @Field("ayah") String ayah,
                                   @Field("ibu") String ibu,
-                                  @Field("id_keluarga") Integer id_anggota,
                                   @Field("id_user") Integer id_user);
 
     @GET(Endpoint.USER_ANGGOTA_WITH_ID)

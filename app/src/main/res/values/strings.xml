@@ -22,10 +22,26 @@
     <string name="placeholder_tipe">Tipe</string>
     <string name="placeholder_ayah">Ayah</string>
     <string name="placeholder_ibu">Ibu</string>
+    <string name="placeholder_validasi">Validasi</string>
 
     <string-array name="spinner_jenis_kelamin">
         <item>LAKI-LAKI</item>
         <item>PEREMPUAN</item>
+    </string-array>
+
+    <string-array name="spinner_user_role">
+        <item>user</item>
+        <item>admin</item>
+    </string-array>
+
+    <string-array name="spinner_id_user">
+        <item>null</item>
+    </string-array>
+
+    <string-array name="spinner_validasi">
+        <item>process</item>
+        <item>problem</item>
+        <item>validated</item>
     </string-array>
 
     <string-array name="spinner_tipe">

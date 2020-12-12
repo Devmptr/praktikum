@@ -1,4 +1,4 @@
-package com.kelompokv.praktikum;
+package com.kelompokv.praktikum.activity.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.kelompokv.praktikum.activity.user.MainActivity;
+import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDAnggota;
