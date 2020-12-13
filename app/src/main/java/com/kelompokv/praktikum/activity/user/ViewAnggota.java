@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class ViewAnggota extends AppCompatActivity {
 
-    String id;
+    Integer id;
     Spinner u_jenis_kelamin, u_tipe;
     EditText u_nama, u_tempat_lahir, u_tanggal_lahir, u_agama, u_pendidikan, u_pekerjaan, u_ayah, u_ibu;
     Button btn_update, btn_delete;
@@ -49,7 +49,7 @@ public class ViewAnggota extends AppCompatActivity {
         u_tipe = (Spinner) findViewById(R.id.u_tipe);
 
         Intent intent = getIntent();
-        id = intent.getStringExtra("id");
+        id = intent.getIntExtra("id", 0);
 
         viewAnggota(id);
 
@@ -134,7 +134,7 @@ public class ViewAnggota extends AppCompatActivity {
         });
     }
 
-    public void viewAnggota(String anggota){
+    public void viewAnggota(Integer anggota){
         service = Client.getClient().create(AnggotaService.class);
         Call<SERAnggota> anggotas = service.editAnggota(anggota);
         anggotas.enqueue(new Callback<SERAnggota>() {

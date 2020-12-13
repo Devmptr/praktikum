@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private ListView list_view;
-    Button btn_logout, btn_create;
+    Button btn_logout, btn_create, btn_edit_keluarga, btn_profile;
     String role;
     SharedPreferences auth_sp;
     private Integer user_id;
@@ -73,6 +73,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, CreateData.class));
+            }
+        });
+
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
+
+        btn_edit_keluarga = findViewById(R.id.btn_uedit_keluarga);
+        btn_edit_keluarga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, DataKeluargaActivity.class));
             }
         });
 

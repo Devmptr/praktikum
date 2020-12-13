@@ -58,13 +58,13 @@ public interface AnggotaService {
                                   @Field("id_user") Integer id_user);
 
     @GET(Endpoint.USER_ANGGOTA_WITH_ID)
-    Call<SERAnggota> editAnggota(@Path(value = "anggota", encoded = true) String anggota);
+    Call<SERAnggota> editAnggota(@Path(value = "anggota", encoded = true) Integer anggota);
 
 
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @PUT(Endpoint.USER_ANGGOTA_WITH_ID)
-    Call<CUDAnggota> updateAnggota(@Path(value = "anggota", encoded = true) String anggota,
+    Call<CUDAnggota> updateAnggota(@Path(value = "anggota", encoded = true) Integer anggota,
                                    @Field("nama") String nama,
                                    @Field("jenis_kelamin") String jenis_kelamin,
                                    @Field("tempat_lahir") String tempat_lahir,
@@ -77,6 +77,6 @@ public interface AnggotaService {
                                    @Field("ibu") String ibu);
 
     @DELETE(Endpoint.USER_ANGGOTA_WITH_ID)
-    Call<CUDAnggota> deleteAnggota(@Path(value = "anggota", encoded = true) String anggota);
+    Call<CUDAnggota> deleteAnggota(@Path(value = "anggota", encoded = true) Integer anggota);
 
 }

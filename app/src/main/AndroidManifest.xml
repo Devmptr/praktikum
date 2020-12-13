@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.FirebaseActivity"></activity>
+        <activity android:name=".activity.user.DataKeluargaActivity"></activity>
+        <activity android:name=".activity.user.ProfileActivity" />
+        <activity android:name=".activity.FirebaseActivity" />
         <activity android:name=".activity.admin.anggota.ShowAnggotaActivity" />
         <activity android:name=".activity.admin.anggota.CreateAnggotaActivity" />
         <activity android:name=".activity.admin.anggota.IndexAnggotaActivity" />
@@ -35,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name=".network.service.FirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

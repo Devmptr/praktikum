@@ -7,6 +7,10 @@ public class Endpoint {
     public static final String USER_ANGGOTA_EDIT = "user/anggota/{anggota}/edit";
     public static final String USER_FIRST_LOGIN = "user/keluarga/firstlogin";
 
+    public static final String USER_PROFILE_UPDATE = "user/profile/update/{id}";
+    public static final String USER_KELUARGA_UPDATE = "user/update/keluarga/{id}";
+    public static final String USER_KELUARGA_GET = "user/get/keluarga/{id}";
+
     public static final String ADMIN_USER_ALL = "admin/user/all";
     public static final String ADMIN_USER_CREATE = "admin/user/create";
     public static final String ADMIN_USER_SHOW = "admin/user/show/{id}";
