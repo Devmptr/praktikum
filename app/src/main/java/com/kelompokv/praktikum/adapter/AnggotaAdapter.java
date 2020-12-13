@@ -37,8 +37,7 @@ public class AnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
         name.setText(anggota.getNama());
 
         TextView tanggal_lahir = (TextView) convertView.findViewById(R.id.list_info);
-        DateFormat date = DateFormat.getDateInstance();
-        tanggal_lahir.setText(date.format(anggota.getTanggallahir()).toString());
+        tanggal_lahir.setText(anggota.getStrTanggal());
 
         return convertView;
     }

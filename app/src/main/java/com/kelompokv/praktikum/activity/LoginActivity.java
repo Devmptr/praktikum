@@ -10,12 +10,14 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.activity.user.FirstLoginActivity;
 import com.kelompokv.praktikum.activity.user.MainActivity;
+import com.kelompokv.praktikum.db.helper.DbHelper;
 import com.kelompokv.praktikum.model.auth.FBToken;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AuthService;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     Boolean is_profile;
     SharedPreferences auth_sp;
     Integer user_id;
+    DbHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         form_email = (EditText) findViewById(R.id.login_email_form);
         form_password = (EditText) findViewById(R.id.login_password_form);
         service = Client.getClient().create(AuthService.class);
+        helper = new DbHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
 
         checkAuth();
         getCurrentFirebaseToken();

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.activity.LoginActivity;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.adapter.AnggotaAdapter;
+import com.kelompokv.praktikum.db.helper.DbHelper;
 import com.kelompokv.praktikum.model.auth.FBToken;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.model.user.AnggotaKeluargaResult;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     String role;
     SharedPreferences auth_sp;
     private Integer user_id;
+    DbHelper helper;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         auth_sp = getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor;
         user_id = auth_sp.getInt("log_id", 0);
+        helper = new DbHelper(this);
+        db = helper.getWritableDatabase();
 
         if (!auth_sp.contains("token")) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -127,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Response body", responseBodyString);
 
                         show(response.body().getAnggota());
-                    }
-                    else  {
+                    } else  {
                         Log.e("Response errorBody", String.valueOf(response.errorBody()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AnggotaKeluargaResult> call, Throwable t) {
+                    show(helper.getAllAnggota());
                     Log.e("Response errorDev", String.valueOf(t.getMessage()));
                 }
             });
@@ -142,6 +148,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show(List<AnggotaKeluarga> anggotas){
+        if (anggotas.size() > 0){
+            String sql_delete = "delete from anggota";
+            db.execSQL(sql_delete);
+            for (int i=0 ; i<anggotas.size(); i++){
+                db.execSQL("insert into anggota (nama, jenis_kelamin, tempat_lahir, agama, pendidikan, " +
+                        "pekerjaan, tipe, ayah, ibu, tanggal_lahir, id_keluarga, validated) values (" +
+                        "'"+anggotas.get(i).getNama()+"', '"+anggotas.get(i).getJeniskelamin()+"', " +
+                        "'"+anggotas.get(i).getTempatlahir()+"', '"+anggotas.get(i).getAgama()+"', " +
+                        "'"+anggotas.get(i).getPendidikan()+"', '"+anggotas.get(i).getPekerjaan()+"', " +
+                        "'"+anggotas.get(i).getTipe()+"', '"+anggotas.get(i).getAyah()+"', " +
+                        "'"+anggotas.get(i).getIbu()+"', '"+anggotas.get(i).getStrTanggal()+"', "+
+                        ""+anggotas.get(i).getId_keluarga()+", '"+anggotas.get(i).getValidated()+"')");
+            }
+        }
         AnggotaAdapter anggotaAdapter = new AnggotaAdapter(this, R.layout.item_anggota, anggotas);
         list_view = (ListView) findViewById(R.id.list_anggota);
         list_view.setAdapter(anggotaAdapter);

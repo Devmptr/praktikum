@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.kelompokv.praktikum.R;
+import com.kelompokv.praktikum.db.helper.DbHelper;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDAnggota;
@@ -31,11 +32,14 @@ public class ViewAnggota extends AppCompatActivity {
     EditText u_nama, u_tempat_lahir, u_tanggal_lahir, u_agama, u_pendidikan, u_pekerjaan, u_ayah, u_ibu;
     Button btn_update, btn_delete;
     AnggotaService service;
+    DbHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_anggota);
+
+        helper = new DbHelper(this);
 
         u_nama = (EditText) findViewById(R.id.u_nama);
         u_tempat_lahir = (EditText) findViewById(R.id.u_tempat_lahir);
@@ -134,7 +138,7 @@ public class ViewAnggota extends AppCompatActivity {
         });
     }
 
-    public void viewAnggota(Integer anggota){
+    public void viewAnggota(final Integer anggota){
         service = Client.getClient().create(AnggotaService.class);
         Call<SERAnggota> anggotas = service.editAnggota(anggota);
         anggotas.enqueue(new Callback<SERAnggota>() {
@@ -159,7 +163,7 @@ public class ViewAnggota extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SERAnggota> call, Throwable t) {
-
+                show(helper.getSelectAnggota(anggota));
             }
         });
     }
