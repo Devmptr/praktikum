@@ -24,4 +24,8 @@ public class Endpoint {
     public static final String ADMIN_ANGGOTA_SHOW = "admin/anggota/show/{id}";
     public static final String ADMIN_ANGGOTA_UPDATE = "admin/anggota/update/{id}";
     public static final String ADMIN_ANGGOTA_DELETE = "admin/anggota/delete/{id}";
+
+    public static final String FIREBASE_SET_TOKEN = "set/fb/token/{id}";
+    public static final String FIREBASE_DELETE_TOKEN = "delete/fb/token/{id}";
+    public static final String FIREBASE_SEND_NOTIF = "send/notif";
 }

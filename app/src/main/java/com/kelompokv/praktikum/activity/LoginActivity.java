@@ -1,10 +1,16 @@
 package com.kelompokv.praktikum.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.activity.user.FirstLoginActivity;
 import com.kelompokv.praktikum.activity.user.MainActivity;
+import com.kelompokv.praktikum.model.auth.FBToken;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AuthService;
 
@@ -30,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView btn_view_register;
     EditText form_email,form_password;
     AuthService service;
-    String token, role;
+    String token, role, token_firebase;
     Boolean is_profile;
     SharedPreferences auth_sp;
     Integer user_id;
@@ -48,6 +54,16 @@ public class LoginActivity extends AppCompatActivity {
         service = Client.getClient().create(AuthService.class);
 
         checkAuth();
+        getCurrentFirebaseToken();
+        Bundle bundle = getIntent().getExtras();
+
+        TextView msg = findViewById(R.id.message);
+        TextView title = findViewById(R.id.title);
+
+        if(bundle != null){
+            title.setText(bundle.getString("title"));
+            msg.setText(bundle.getString("message"));
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +127,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putInt("log_id", user_id);
                     editor.apply();
 
+                    setFBToken(user_id, token_firebase);
+
                     if(role.equals("user")){
                         Log.d("is Profile", is_profile.toString());
                         if (is_profile) {
@@ -132,6 +150,44 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error" + t,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getCurrentFirebaseToken(){
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if(!task.isSuccessful()) {
+                    Log.w("TAG", "getInstaceId failed", task.getException());
+                    return;
+                }
+
+                token_firebase = task.getResult().getToken();
+                Log.e("currentToken", token_firebase);
+            }
+        });
+    }
+
+    private void setFBToken(Integer id_u, String token_fb){
+        Call<FBToken> setToken = service.setFBToken(id_u, token_fb);
+
+        setToken.enqueue(new Callback<FBToken>() {
+            @Override
+            public void onResponse(Call<FBToken> call, Response<FBToken> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Set Token Berhasil",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Set Token Gagal",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FBToken> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error" + t,
                         Toast.LENGTH_SHORT).show();
             }

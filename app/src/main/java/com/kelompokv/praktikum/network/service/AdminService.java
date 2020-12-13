@@ -120,4 +120,11 @@ public interface AdminService {
                                    @Field("ibu") String ibu,
                                    @Field("id_keluarga") Integer id_keluarga,
                                    @Field("validasi") String validasi);
+
+    @Headers({"Accept: application/json"})
+    @FormUrlEncoded
+    @POST(Endpoint.FIREBASE_SEND_NOTIF)
+    Call<CUDAnggota> sendNotifUpdate(@Field("title") String title,
+                                     @Field("message") String msg,
+                                     @Field("token") String token);
 }

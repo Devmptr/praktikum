@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "800996138229",
+    "project_id": "praktikum-progmob-399db",
+    "storage_bucket": "praktikum-progmob-399db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800996138229:android:c40aba3770fdf8ab0339bc",
+        "android_client_info": {
+          "package_name": "com.kelompokv.praktikum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800996138229-cllh6o3tdguqh59jg93oth3jkm81q3mr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kelompokv.praktikum",
+            "certificate_hash": "d44dc3a5a9a4b4deb0d22580466f7cbc40991a6a"
+          }
+        },
+        {
+          "client_id": "800996138229-tni86o2mj7lnpn1fp9at2rvnuu50q16p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlY3LWgP9G3M8CCW5vfoumnDXeBa4WgIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800996138229-tni86o2mj7lnpn1fp9at2rvnuu50q16p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

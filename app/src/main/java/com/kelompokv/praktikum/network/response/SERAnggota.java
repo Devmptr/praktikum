@@ -12,4 +12,11 @@ public class SERAnggota {
     public AnggotaKeluarga getAnggota() {
         return anggotas;
     }
+
+    @SerializedName("token_fb")
+    @Expose
+    private String token_fb;
+    public String getToken_fb(){
+        return token_fb;
+    }
 }

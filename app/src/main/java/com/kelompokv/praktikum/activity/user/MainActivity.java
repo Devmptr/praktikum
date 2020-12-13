@@ -1,5 +1,6 @@
 package com.kelompokv.praktikum.activity.user;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,15 +11,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.activity.LoginActivity;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.adapter.AnggotaAdapter;
+import com.kelompokv.praktikum.model.auth.FBToken;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.model.user.AnggotaKeluargaResult;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AnggotaService;
+import com.kelompokv.praktikum.network.service.AuthService;
 
 import java.util.List;
 
@@ -86,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         auth_sp.edit().clear().commit();
         Log.e("Response body", auth_sp.getString("token", ""));
         Log.e("Response body", auth_sp.getString("role", ""));
-
+        deleteFBToken(user_id);
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
@@ -122,5 +130,30 @@ public class MainActivity extends AppCompatActivity {
         list_view = (ListView) findViewById(R.id.list_anggota);
         list_view.setAdapter(anggotaAdapter);
         anggotaAdapter.notifyDataSetChanged();
+    }
+
+    private void deleteFBToken(Integer id_u){
+        AuthService service;
+        service = Client.getClient().create(AuthService.class);
+        Call<FBToken> setToken = service.deleteFBToken(id_u);
+
+        setToken.enqueue(new Callback<FBToken>() {
+            @Override
+            public void onResponse(Call<FBToken> call, Response<FBToken> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Delete Token Berhasil",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Delete Token Gagal",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FBToken> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error" + t,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
