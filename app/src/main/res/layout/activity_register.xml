@@ -5,34 +5,49 @@
     android:id="@+id/layout_cons_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBluePrimary"
     tools:context=".activity.RegisterActivity">
 
-    <TextView
-        android:id="@+id/register_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_title"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="90dp"
+        android:scaleType="fitEnd"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:srcCompat="@drawable/logo_white" />
 
     <LinearLayout
         android:id="@+id/register_wrapper"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintStart_toStartOf="@+id/register_title"
-        app:layout_constraintTop_toBottomOf="@+id/register_title"
-        app:layout_constraintEnd_toEndOf="@+id/register_title">
+        android:padding="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/opensans_semibold"
+            android:text="@string/register_text"
+            android:textColor="@color/colorWhitePrimary"
+            android:textSize="18sp"/>
 
         <EditText
             android:id="@+id/register_name_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_btn_white"
             android:ems="10"
+            android:padding="18dp"
+            android:textColor="@color/colorBluePrimary"
+            android:textColorHint="@color/colorBlueSecondary"
             android:hint="@string/name_placeholder"
             android:inputType="textPersonName" />
 
@@ -40,8 +55,12 @@
             android:id="@+id/register_email_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custom_btn_white"
             android:ems="10"
+            android:padding="18dp"
+            android:textColor="@color/colorBluePrimary"
+            android:textColorHint="@color/colorBlueSecondary"
             android:hint="@string/email_placeholder"
             android:inputType="textEmailAddress" />
 
@@ -49,38 +68,64 @@
             android:id="@+id/register_password_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custom_btn_white"
             android:ems="10"
+            android:padding="18dp"
+            android:textColor="@color/colorBluePrimary"
+            android:textColorHint="@color/colorBlueSecondary"
             android:hint="@string/password_placeholder"
             android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/register_submit_btn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/register_title" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
+            <Button
+                android:id="@+id/register_submit_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/custom_btn_white"
+                android:fontFamily="@font/opensans_semibold"
+                android:text="@string/register_title"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBluePrimary"
+                android:textSize="18sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/login_text_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/register_login_link"
-        app:layout_constraintEnd_toEndOf="@+id/register_wrapper"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/register_wrapper"
-        app:layout_constraintTop_toBottomOf="@+id/register_wrapper" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorWhitePrimary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/login_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/login_title"
-        app:layout_constraintBottom_toBottomOf="@+id/login_text_link"
-        app:layout_constraintStart_toEndOf="@+id/login_text_link"
-        app:layout_constraintTop_toTopOf="@+id/login_text_link" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/footer_akun_sudah"
+            android:textColor="@color/colorBlackPrimary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/login_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:text="@string/login_text"
+            android:textColor="@color/colorBluePrimary"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/login_register_link"
+            app:layout_constraintStart_toEndOf="@+id/login_register_link"
+            app:layout_constraintTop_toTopOf="@+id/login_register_link" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
