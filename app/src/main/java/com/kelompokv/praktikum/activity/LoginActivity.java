@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         helper = new DbHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        checkAuth();
+//        checkAuth();
         getCurrentFirebaseToken();
         Bundle bundle = getIntent().getExtras();
 
