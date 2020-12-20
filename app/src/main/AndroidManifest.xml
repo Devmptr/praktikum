@@ -5,15 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_custom"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_custom_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        android:name=".MyApp">
-        <activity android:name=".activity.user.DataKeluargaActivity"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.user.DataKeluargaActivity" />
         <activity android:name=".activity.user.ProfileActivity" />
         <activity android:name=".activity.FirebaseActivity" />
         <activity android:name=".activity.admin.anggota.ShowAnggotaActivity" />
@@ -30,15 +30,15 @@
         <activity android:name=".activity.user.ViewAnggota" />
         <activity android:name=".activity.user.CreateData" />
         <activity android:name=".activity.user.MainActivity" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.RegisterActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".activity.LoginActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".activity.SplashActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service android:name=".network.service.FirebaseService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
