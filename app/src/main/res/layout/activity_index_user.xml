@@ -31,6 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:text="Add User" />
+            android:text="Add User"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorBluePrimary"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

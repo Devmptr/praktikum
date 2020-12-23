@@ -30,14 +30,17 @@
                     android:id="@+id/ph_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_nama" />
+                    android:text="@string/placeholder_nama"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -51,14 +54,17 @@
                     android:id="@+id/ph_jenis_kelamin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_jenis_kelamin" />
+                    android:text="@string/placeholder_jenis_kelamin"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/aacreate_jenis_kelamin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_jenis_kelamin"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,14 +78,17 @@
                     android:id="@+id/ph_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tempat_lahir" />
+                    android:text="@string/placeholder_tempat_lahir"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -93,7 +102,9 @@
                     android:id="@+id/ph_tanggal_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tanggal_lahir" />
+                    android:text="@string/placeholder_tanggal_lahir"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_tanggal_lahir"
@@ -101,7 +112,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="YYYY-MM-DD"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:backgroundTint="@color/colorBluePrimary"/>
 
             </LinearLayout>
 
@@ -116,14 +128,17 @@
                     android:id="@+id/ph_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_agama" />
+                    android:text="@string/placeholder_agama"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -137,14 +152,17 @@
                     android:id="@+id/ph_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_pendidikan" />
+                    android:text="@string/placeholder_pendidikan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -158,14 +176,17 @@
                     android:id="@+id/ph_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_pekerjaan" />
+                    android:text="@string/placeholder_pekerjaan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
                     android:id="@+id/aacreate_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -179,14 +200,17 @@
                     android:id="@+id/ph_tipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tipe" />
+                    android:text="@string/placeholder_tipe"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/aacreate_tipe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_tipe"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -200,14 +224,17 @@
                     android:id="@+id/ph_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_ayah" />
+                    android:text="@string/placeholder_ayah"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -221,14 +248,17 @@
                     android:id="@+id/ph_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_ibu" />
+                    android:text="@string/placeholder_ibu"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/aacreate_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -242,14 +272,17 @@
                     android:id="@+id/ph_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="User Account" />
+                    android:text="User Account"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/aacreate_id_user"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_id_user"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -263,20 +296,27 @@
                     android:id="@+id/ph_validasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_validasi" />
+                    android:text="@string/placeholder_validasi"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/aacreate_validasi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_validasi"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <Button
                 android:id="@+id/aacreate_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#fff"
+                android:backgroundTint="@color/colorBluePrimary"
                 android:text="@string/add_data_placeholder" />
         </LinearLayout>
     </ScrollView>

@@ -22,7 +22,10 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlackPrimary"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <EditText
             android:id="@+id/auupdate_email"
@@ -31,7 +34,10 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorBlackPrimary"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <EditText
             android:id="@+id/auupdate_password"
@@ -40,7 +46,10 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/colorBlackPrimary"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <Spinner
             android:id="@+id/auupdate_role"
@@ -48,7 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:entries="@array/spinner_user_role"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:textColor="@color/colorBlackPrimary"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -59,13 +71,17 @@
                 android:id="@+id/auupdate_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update User" />
+                android:text="Update User"
+                android:textColor="#fff"
+                android:backgroundTint="@color/colorBluePrimary"/>
 
             <Button
                 android:id="@+id/auupdate_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete User" />
+                android:text="Delete User"
+                android:textColor="#fff"
+                android:backgroundTint="@color/colorBluePrimary"/>
         </LinearLayout>
 
     </LinearLayout>

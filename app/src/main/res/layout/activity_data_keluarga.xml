@@ -27,6 +27,8 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="Ubah Data Keluarga"
+                android:textSize="24dp"
+                android:textColor="@color/colorBlackPrimary"
                 android:textAlignment="center" />
 
             <LinearLayout
@@ -40,14 +42,17 @@
                     android:id="@+id/ph_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Alamat" />
+                    android:text="Alamat"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -61,14 +66,17 @@
                     android:id="@+id/ph_rtrw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RT / RW" />
+                    android:text="RT / RW"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_rtrw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -82,14 +90,17 @@
                     android:id="@+id/ph_kodepos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kode Pos" />
+                    android:text="Kode Pos"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_kodepos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -103,14 +114,17 @@
                     android:id="@+id/ph_kelurahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kelurahan" />
+                    android:text="Kelurahan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_kelurahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -124,14 +138,17 @@
                     android:id="@+id/ph_kecamatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kecamatan" />
+                    android:text="Kecamatan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_kecamatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -145,14 +162,17 @@
                     android:id="@+id/ph_kabupaten"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kabupaten" />
+                    android:text="Kabupaten"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_kabupaten"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -166,14 +186,17 @@
                     android:id="@+id/ph_provinsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Provinsi" />
+                    android:text="Provinsi"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/ukeluarga_provinsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -192,6 +215,8 @@
             android:id="@+id/ukeluarga_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="Update"
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorBluePrimary"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

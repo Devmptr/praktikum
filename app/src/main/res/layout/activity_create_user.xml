@@ -22,7 +22,9 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="name"
-            android:inputType="textPersonName" />
+            android:textColorHint="@color/colorBluePrimary"
+            android:inputType="textPersonName"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <EditText
             android:id="@+id/aucreate_email"
@@ -31,7 +33,9 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <EditText
             android:id="@+id/aucreate_password"
@@ -40,7 +44,9 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/colorBluePrimary"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <Spinner
             android:id="@+id/aucreate_role"
@@ -48,12 +54,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:entries="@array/spinner_user_role"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:backgroundTint="@color/colorBluePrimary"/>
 
         <Button
             android:id="@+id/aucreate_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add User" />
+            android:text="Add User"
+            android:backgroundTint="@color/colorBluePrimary"
+            android:textColor="#fff"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

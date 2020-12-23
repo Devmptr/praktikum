@@ -31,14 +31,17 @@
                     android:id="@+id/ph_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_nama" />
+                    android:text="@string/placeholder_nama"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -52,14 +55,17 @@
                     android:id="@+id/ph_jenis_kelamin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_jenis_kelamin" />
+                    android:text="@string/placeholder_jenis_kelamin"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/u_jenis_kelamin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_jenis_kelamin"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -73,14 +79,17 @@
                     android:id="@+id/ph_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tempat_lahir" />
+                    android:text="@string/placeholder_tempat_lahir"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +103,9 @@
                     android:id="@+id/ph_tanggal_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tanggal_lahir" />
+                    android:text="@string/placeholder_tanggal_lahir"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_tanggal_lahir"
@@ -102,7 +113,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="YYYY-MM-DD"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:backgroundTint="@color/colorBluePrimary"/>
 
             </LinearLayout>
 
@@ -117,14 +129,17 @@
                     android:id="@+id/ph_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_agama" />
+                    android:text="@string/placeholder_agama"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -138,14 +153,17 @@
                     android:id="@+id/ph_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_pendidikan" />
+                    android:text="@string/placeholder_pendidikan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -159,14 +177,17 @@
                     android:id="@+id/ph_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_pekerjaan" />
+                    android:text="@string/placeholder_pekerjaan"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -180,14 +201,17 @@
                     android:id="@+id/ph_tipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_tipe" />
+                    android:text="@string/placeholder_tipe"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <Spinner
                     android:id="@+id/u_tipe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_tipe"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -201,14 +225,17 @@
                     android:id="@+id/ph_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_ayah" />
+                    android:text="@string/placeholder_ayah"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -222,14 +249,17 @@
                     android:id="@+id/ph_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/placeholder_ibu" />
+                    android:text="@string/placeholder_ibu"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorBlackPrimary"/>
 
                 <EditText
                     android:id="@+id/u_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName"
+                    android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
             <LinearLayout
@@ -244,14 +274,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/update_data_placeholder" />
+                    android:text="@string/update_data_placeholder"
+                    android:backgroundTint="@color/colorBluePrimary"
+                    android:textColor="#fff"/>
 
                 <Button
                     android:id="@+id/btn_delete_anggota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/delete_data_placeholder" />
+                    android:text="@string/delete_data_placeholder"
+                    android:backgroundTint="@color/colorBluePrimary"
+                    android:textColor="#fff"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

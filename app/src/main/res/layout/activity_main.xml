@@ -30,29 +30,33 @@
             android:id="@+id/btn_create_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/add_data_placeholder" />
+            android:text="@string/add_data_placeholder"
+            android:backgroundTint="@color/colorBluePrimary"
+            android:textColor="#fff"/>
 
         <Button
             android:id="@+id/btn_uedit_keluarga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="Edit" />
+            android:text="Edit"
+            android:backgroundTint="@color/colorBluePrimary"
+            android:textColor="#fff"/>
 
         <Button
             android:id="@+id/btn_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="Profile" />
+            android:text="Profile"
+            android:backgroundTint="@color/colorBluePrimary"
+            android:textColor="#fff"/>
 
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/logout_title" />
+            android:text="@string/logout_title"
+            android:backgroundTint="@color/colorBluePrimary"
+            android:textColor="#fff"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
