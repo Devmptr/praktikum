@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.admin.user.IndexUserActivity">
+    tools:context=".activity.admin.user.IndexUserActivity"
+    android:background="@color/colorBluePrimary">
 
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="295dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/alist_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_white" />
     <ListView
         android:id="@+id/alist_user"
         android:layout_width="match_parent"
@@ -32,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:text="Add User"
-            android:textColor="#fff"
-            android:backgroundTint="@color/colorBluePrimary"/>
+            android:textColor="@color/colorBluePrimary"
+            android:backgroundTint="#fff"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
