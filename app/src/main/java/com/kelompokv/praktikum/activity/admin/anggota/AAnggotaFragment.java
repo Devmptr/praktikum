@@ -1,18 +1,21 @@
 package com.kelompokv.praktikum.activity.admin.anggota;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.keluarga.IndexKeluargaActivity;
 import com.kelompokv.praktikum.adapter.AdminAnggotaAdapter;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.model.user.AnggotaKeluargaResult;
@@ -25,55 +28,61 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IndexAnggotaActivity extends AppCompatActivity {
-    Intent intent;
+public class AAnggotaFragment extends Fragment {
+    View view;
     Integer id_keluarga;
     AdminService service;
     ListView list_anggota, item_anggota;
-    Button btn_create;
+    FloatingActionButton btn_add;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index_anggota);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_anggota_index_fragment, container, false);
 
-        intent = getIntent();
-        item_anggota = findViewById(R.id.list_aanggota);
-        btn_create = findViewById(R.id.btn_create_aanggota);
-        id_keluarga = intent.getIntExtra("id_keluarga", 0);
         service = Client.getClient().create(AdminService.class);
+        id_keluarga = getArguments().getInt("id_keluarga");
+        item_anggota = view.findViewById(R.id.list_aanggota);
+        btn_add = view.findViewById(R.id.btn_aanggota_add);
 
-        Toast.makeText(getApplicationContext(), "id keluarga "+id_keluarga,
-                Toast.LENGTH_SHORT).show();
         loadAnggota(id_keluarga);
 
         item_anggota.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(IndexAnggotaActivity.this, ShowAnggotaActivity.class);
                 AnggotaKeluarga item = (AnggotaKeluarga) adapterView.getItemAtPosition(i);
                 Bundle extras = new Bundle();
                 extras.putInt("id_anggota", item.getId());
                 extras.putInt("id_keluarga", id_keluarga);
-                intent.putExtras(extras);
-                startActivity(intent);
+                loadFragment(new AAnggotaShowFragment(), extras);
             }
         });
 
-        btn_create.setOnClickListener(new View.OnClickListener() {
+        btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(IndexAnggotaActivity.this, CreateAnggotaActivity.class);
-                intent.putExtra("id_keluarga", id_keluarga);
-                startActivity(intent);
+                Bundle extras = new Bundle();
+                extras.putInt("id_keluarga", id_keluarga);
+                loadFragment(new AAnggotaCreateFragment(), extras);
             }
         });
+
+        return view;
+    }
+
+    private void loadFragment(Fragment fragment, @Nullable Bundle mBundle){
+        if(mBundle != null){
+            fragment.setArguments(mBundle);
+        }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
     }
 
     private void loadAnggota(Integer id){
-        if(id == 0){
-            startActivity(new Intent(IndexAnggotaActivity.this, IndexKeluargaActivity.class));
-        }else{
+        if(id != 0){
             Call<AnggotaKeluargaResult> show = service.anggotaKeluarga(id);
             show.enqueue(new Callback<AnggotaKeluargaResult>() {
                 @Override
@@ -104,8 +113,8 @@ public class IndexAnggotaActivity extends AppCompatActivity {
     }
 
     private void showAnggota(List<AnggotaKeluarga> data){
-        AdminAnggotaAdapter anggotaAdapter = new AdminAnggotaAdapter(this, R.layout.item_anggota, data);
-        list_anggota = (ListView) findViewById(R.id.list_aanggota);
+        AdminAnggotaAdapter anggotaAdapter = new AdminAnggotaAdapter(view.getContext(), R.layout.item_anggota, data);
+        list_anggota = (ListView) view.findViewById(R.id.list_aanggota);
         list_anggota.setAdapter(anggotaAdapter);
         anggotaAdapter.notifyDataSetChanged();
     }

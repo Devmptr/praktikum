@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.admin.anggota.ShowAnggotaActivity">
+    tools:context=".activity.admin.anggota.AAnggotaShowFragment"
+    android:background="@color/colorWhitePrimary">
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/form_button_aaupdate"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
             android:id="@+id/update_anggota_wrapper"
@@ -33,16 +36,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_nama"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -57,16 +62,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_jenis_kelamin"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <Spinner
                     android:id="@+id/aaupdate_jenis_kelamin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:theme="@style/spinnerWhite"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:entries="@array/spinner_jenis_kelamin"
-                    android:padding="12dp"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:padding="12dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,16 +87,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tempat_lahir"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,17 +113,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tanggal_lahir"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_tanggal_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
                     android:hint="YYYY-MM-DD"
-                    android:inputType="date"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="date" />
 
             </LinearLayout>
 
@@ -131,16 +141,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_agama"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,16 +167,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_pendidikan"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,13 +193,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_pekerjaan"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
                     android:inputType="textPersonName" />
             </LinearLayout>
@@ -202,15 +219,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tipe"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <Spinner
                     android:id="@+id/aaupdate_tipe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_tipe"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:theme="@style/spinnerWhite"
+                    android:backgroundTint="@color/colorBluePrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -225,15 +244,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_ayah"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -248,15 +270,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_ibu"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/aaupdate_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -271,43 +296,50 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_validasi"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <Spinner
                     android:id="@+id/aaupdate_validasi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_validasi"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:theme="@style/spinnerWhite"
+                    android:backgroundTint="@color/colorBluePrimary" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/form_button_aaupdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/aaupdate_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/custom_btn_blue"
+                    android:text="@string/update_data_placeholder"
+                    android:textColor="#fff" />
+
+                <Button
+                    android:id="@+id/aaupdate_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/custom_btn_blue"
+                    android:text="@string/delete_data_placeholder"
+                    android:textColor="#fff" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/form_button_aaupdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/aaupdate_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/update_data_placeholder"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:textColor="#fff"/>
-
-        <Button
-            android:id="@+id/aaupdate_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_data_placeholder"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:textColor="#fff"/>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

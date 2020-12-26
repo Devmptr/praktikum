@@ -1,19 +1,28 @@
 package com.kelompokv.praktikum.activity.admin.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kelompokv.praktikum.R;
+import com.kelompokv.praktikum.activity.user.UserViewFragment;
 import com.kelompokv.praktikum.adapter.UserAdapter;
 import com.kelompokv.praktikum.model.admin.User;
 import com.kelompokv.praktikum.model.admin.UserList;
+import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AdminService;
 
@@ -23,38 +32,48 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IndexUserActivity extends AppCompatActivity {
+public class AUserFragment extends Fragment {
     AdminService service;
     ListView user_list, list_user;
-    Button a_user_create;
-
+    FloatingActionButton a_user_create;
+    View view;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index_user);
-
-        a_user_create = findViewById(R.id.a_user_create);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_user_index_fragment, container, false);
 
         loadUser();
-
-        list_user = findViewById(R.id.alist_user);
+        a_user_create = view.findViewById(R.id.btn_auser_add);
+        list_user = view.findViewById(R.id.alist_user);
 
         a_user_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(IndexUserActivity.this, CreateUserActivity.class));
+                loadFragment(new AUserCreateFragment(), null);
             }
         });
 
         list_user.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(IndexUserActivity.this, ShowUserActivity.class);
                 User item = (User) adapterView.getItemAtPosition(i);
-                intent.putExtra("id", item.getId());
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", item.getId());
+                loadFragment(new AUserShowFragment(), bundle);
             }
         });
+        return view;
+    }
+
+    private void loadFragment(Fragment fragment, @Nullable Bundle mBundle){
+        if(mBundle != null){
+            fragment.setArguments(mBundle);
+        }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
     }
 
     private void loadUser(){
@@ -83,8 +102,8 @@ public class IndexUserActivity extends AppCompatActivity {
     }
 
     private void showUser(List<User> users){
-        UserAdapter adapter = new UserAdapter(this, R.layout.item_user, users);
-        user_list = (ListView) findViewById(R.id.alist_user);
+        UserAdapter adapter = new UserAdapter(view.getContext(), R.layout.item_user, users);
+        user_list = (ListView) view.findViewById(R.id.alist_user);
         user_list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

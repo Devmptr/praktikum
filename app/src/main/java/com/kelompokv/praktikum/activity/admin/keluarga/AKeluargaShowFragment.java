@@ -1,56 +1,56 @@
 package com.kelompokv.praktikum.activity.admin.keluarga;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.anggota.IndexAnggotaActivity;
-import com.kelompokv.praktikum.activity.admin.user.IndexUserActivity;
-import com.kelompokv.praktikum.activity.admin.user.ShowUserActivity;
+import com.kelompokv.praktikum.activity.admin.anggota.AAnggotaFragment;
 import com.kelompokv.praktikum.model.admin.Keluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDKeluarga;
 import com.kelompokv.praktikum.network.response.SERKeluarga;
-import com.kelompokv.praktikum.network.response.SERUser;
 import com.kelompokv.praktikum.network.service.AdminService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShowKeluargaActivity extends AppCompatActivity {
+public class AKeluargaShowFragment extends Fragment {
+    View view;
     Integer id_keluarga;
-    Intent intent;
     AdminService service;
     EditText alamat, rtrw, kodepos, kelurahan, kecamatan, kabupaten, provinsi;
     Button btn_update, btn_delete, btn_lihat_anggota;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_keluarga);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_keluarga_show_fragment, container, false);
 
-        intent = getIntent();
-        btn_update = findViewById(R.id.akupdate_update);
-        btn_delete = findViewById(R.id.akupdate_delete);
-        btn_lihat_anggota = findViewById(R.id.akupdate_anggota);
-        alamat = findViewById(R.id.akupdate_alamat);
-        rtrw = findViewById(R.id.akupdate_rtrw);
-        kodepos = findViewById(R.id.akupdate_kodepos);
-        kelurahan = findViewById(R.id.akupdate_kelurahan);
-        kecamatan = findViewById(R.id.akupdate_kecamatan);
-        kabupaten = findViewById(R.id.akupdate_kabupaten);
-        provinsi = findViewById(R.id.akupdate_provinsi);
+        btn_update = view.findViewById(R.id.akupdate_update);
+        btn_delete = view.findViewById(R.id.akupdate_delete);
+        btn_lihat_anggota = view.findViewById(R.id.akupdate_anggota);
+        alamat = view.findViewById(R.id.akupdate_alamat);
+        rtrw = view.findViewById(R.id.akupdate_rtrw);
+        kodepos = view.findViewById(R.id.akupdate_kodepos);
+        kelurahan = view.findViewById(R.id.akupdate_kelurahan);
+        kecamatan = view.findViewById(R.id.akupdate_kecamatan);
+        kabupaten = view.findViewById(R.id.akupdate_kabupaten);
+        provinsi = view.findViewById(R.id.akupdate_provinsi);
 
-        id_keluarga = intent.getIntExtra("id", 0);
+        id_keluarga = getArguments().getInt("id");
         service = Client.getClient().create(AdminService.class);
 
         viewKeluarga(id_keluarga);
@@ -59,9 +59,9 @@ public class ShowKeluargaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateKeluarga(id_keluarga, alamat.getText().toString(), rtrw.getText().toString(),
-                                kodepos.getText().toString(), kelurahan.getText().toString(),
-                                kecamatan.getText().toString(), kabupaten.getText().toString(),
-                                provinsi.getText().toString());
+                        kodepos.getText().toString(), kelurahan.getText().toString(),
+                        kecamatan.getText().toString(), kabupaten.getText().toString(),
+                        provinsi.getText().toString());
             }
         });
 
@@ -75,17 +75,17 @@ public class ShowKeluargaActivity extends AppCompatActivity {
         btn_lihat_anggota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(ShowKeluargaActivity.this, IndexAnggotaActivity.class);
-                intent.putExtra("id_keluarga", id_keluarga);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id_keluarga", id_keluarga);
+                loadFragment(new AAnggotaFragment(), bundle);
             }
         });
+        return view;
     }
 
+
     private void viewKeluarga(Integer id){
-        if(id == 0){
-            startActivity(new Intent(ShowKeluargaActivity.this, IndexKeluargaActivity.class));
-        }else{
+        if(id != 0){
             Call<SERKeluarga> show = service.showKeluarga(id);
             show.enqueue(new Callback<SERKeluarga>() {
                 @Override
@@ -125,12 +125,13 @@ public class ShowKeluargaActivity extends AppCompatActivity {
         provinsi.setText(data.getProvinsi());
     }
 
+
     private void updateKeluarga(Integer id, String ualamat, String urtrw, String ukodepos,
                                 String ukelurahan, String ukecamatan, String ukabupaten,
                                 String uprovinsi){
 
         Call<CUDKeluarga> update = service.updateKeluarga(id, ualamat, urtrw, ukodepos, ukelurahan,
-                                                          ukecamatan, ukabupaten, uprovinsi);
+                ukecamatan, ukabupaten, uprovinsi);
 
         update.enqueue(new Callback<CUDKeluarga>() {
             @Override
@@ -142,12 +143,12 @@ public class ShowKeluargaActivity extends AppCompatActivity {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Update Keluarga Berhasil",
+                    Toast.makeText(view.getContext(), "Update Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(ShowKeluargaActivity.this, IndexKeluargaActivity.class));
+                    loadFragment(new AKeluargaFragment(), null);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Update Keluarga Gagal",
+                    Toast.makeText(view.getContext(), "Update Keluarga Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getError().toString());
                 }
@@ -155,7 +156,7 @@ public class ShowKeluargaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CUDKeluarga> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }
@@ -176,12 +177,12 @@ public class ShowKeluargaActivity extends AppCompatActivity {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Delete Keluarga Berhasil",
+                    Toast.makeText(view.getContext(), "Delete Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(ShowKeluargaActivity.this, IndexKeluargaActivity.class));
+                    loadFragment(new AKeluargaFragment(), null);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Delete Keluarga Gagal",
+                    Toast.makeText(view.getContext(), "Delete Keluarga Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getError().toString());
                 }
@@ -189,10 +190,22 @@ public class ShowKeluargaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CUDKeluarga> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }
         });
+    }
+
+
+    private void loadFragment(Fragment fragment, @Nullable Bundle mBundle){
+        if(mBundle != null){
+            fragment.setArguments(mBundle);
+        }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
     }
 }

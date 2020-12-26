@@ -7,7 +7,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
+import com.kelompokv.praktikum.activity.admin.MainAdmin;
 import com.kelompokv.praktikum.activity.user.FirstLoginActivity;
 import com.kelompokv.praktikum.activity.user.MainUser;
 import com.kelompokv.praktikum.db.helper.DbHelper;
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, FirstLoginActivity.class));
                         }
                     }else if(role.equals("admin")){
-                        startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainAdmin.class));
                     }else{
                         Toast.makeText(getApplicationContext(), "Failed to Find Role",
                                 Toast.LENGTH_SHORT).show();

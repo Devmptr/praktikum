@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.util.List;
 
@@ -36,9 +38,12 @@ public class AdminAnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
         TextView name = (TextView) convertView.findViewById(R.id.list_name);
         name.setText(anggota.getNama());
 
+        TextView type = (TextView) convertView.findViewById(R.id.item_user_type);
+        type.setText(anggota.getTipe());
+
         TextView info = (TextView) convertView.findViewById(R.id.list_info);
         DateFormat date = DateFormat.getDateInstance();
-        info.setText(date.format(anggota.getTanggallahir()).toString() +" | "+anggota.getValidated());
+        info.setText(date.format(anggota.getTanggallahir()).toString());
 
         return convertView;
     }

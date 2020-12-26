@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.admin.keluarga.CreateKeluargaActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.admin.keluarga.AKeluargaCreateFragment"
+    android:background="@color/colorWhitePrimary">
 
     <ScrollView
         android:id="@+id/create_keluarga_wrapper"
@@ -22,16 +23,6 @@
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/text_create_keluarga"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Buat Keluarga"
-                android:textAlignment="center"
-                android:textSize="24dp"
-                android:textColor="@color/colorBlackPrimary" />
-
             <LinearLayout
                 android:id="@+id/form_gck_alamat"
                 android:layout_width="match_parent"
@@ -44,16 +35,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Alamat"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -68,16 +61,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="RT / RW"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_rtrw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,16 +87,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kode Pos"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_kodepos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -116,16 +113,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kelurahan"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_kelurahan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -140,16 +139,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kecamatan"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_kecamatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -164,16 +165,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kabupaten"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_kabupaten"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -188,28 +191,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Provinsi"
-                    android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:textColor="@color/colorBlackPrimary"
+                    android:textSize="16dp" />
 
                 <EditText
                     android:id="@+id/akcreate_provinsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary" />
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/akcreate_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_btn_blue"
                 android:text="Add Keluarga"
-                android:textSize="16dp"
                 android:textColor="#fff"
-                android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/colorBluePrimary"
-                android:layout_marginRight="10dp"/>
+                android:textSize="16dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

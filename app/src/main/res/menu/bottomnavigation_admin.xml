@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_admin_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/bnav_home"/>
+    <item
+        android:id="@+id/menu_admin_user"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/bnav_user"/>
+    <item
+        android:id="@+id/menu_admin_keluarga"
+        android:icon="@drawable/ic_keluarga"
+        android:title="@string/bnav_keluarga"/>
+    <item
+        android:id="@+id/menu_admin_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/bnav_logout"/>
+
+</menu>

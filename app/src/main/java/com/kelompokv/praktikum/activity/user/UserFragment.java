@@ -60,13 +60,10 @@ public class UserFragment extends Fragment {
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AnggotaKeluarga item = (AnggotaKeluarga) adapterView.getItemAtPosition(i);
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", item.getId());
-                loadFragment(new UserViewFragment(), bundle, "Data Anggota Keluarga");
-//                Intent intent = new Intent(MainActivity.this, ViewAnggota.class);
-//                intent.putExtra("id", item.getId());
-//                startActivity(intent);
+            AnggotaKeluarga item = (AnggotaKeluarga) adapterView.getItemAtPosition(i);
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", item.getId());
+            loadFragment(new UserViewFragment(), bundle, "Data Anggota Keluarga");
             }
         });
 

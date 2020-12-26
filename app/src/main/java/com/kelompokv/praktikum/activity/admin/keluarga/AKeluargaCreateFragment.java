@@ -1,64 +1,69 @@
 package com.kelompokv.praktikum.activity.admin.keluarga;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.user.CreateUserActivity;
-import com.kelompokv.praktikum.activity.admin.user.IndexUserActivity;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDKeluarga;
-import com.kelompokv.praktikum.network.response.CUDUser;
 import com.kelompokv.praktikum.network.service.AdminService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CreateKeluargaActivity extends AppCompatActivity {
+public class AKeluargaCreateFragment extends Fragment {
+    View view;
     Button btn_create;
     EditText alamat, rtrw, kodepos, kelurahan, kecamatan, kabupaten, provinsi;
     AdminService service;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_keluarga);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_keluarga_create_fragment, container, false);
 
-        btn_create = findViewById(R.id.akcreate_create);
-        alamat = findViewById(R.id.akcreate_alamat);
-        rtrw = findViewById(R.id.akcreate_rtrw);
-        kodepos = findViewById(R.id.akcreate_kodepos);
-        kelurahan = findViewById(R.id.akcreate_kelurahan);
-        kecamatan = findViewById(R.id.akcreate_kecamatan);
-        kabupaten = findViewById(R.id.akcreate_kabupaten);
-        provinsi = findViewById(R.id.akcreate_provinsi);
+        btn_create = view.findViewById(R.id.akcreate_create);
+        alamat = view.findViewById(R.id.akcreate_alamat);
+        rtrw = view.findViewById(R.id.akcreate_rtrw);
+        kodepos = view.findViewById(R.id.akcreate_kodepos);
+        kelurahan = view.findViewById(R.id.akcreate_kelurahan);
+        kecamatan = view.findViewById(R.id.akcreate_kecamatan);
+        kabupaten = view.findViewById(R.id.akcreate_kabupaten);
+        provinsi = view.findViewById(R.id.akcreate_provinsi);
         service = Client.getClient().create(AdminService.class);
 
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createKeluarga(alamat.getText().toString(), rtrw.getText().toString(),
-                               kodepos.getText().toString(), kelurahan.getText().toString(),
-                               kecamatan.getText().toString(), kabupaten.getText().toString(),
-                               provinsi.getText().toString());
+                        kodepos.getText().toString(), kelurahan.getText().toString(),
+                        kecamatan.getText().toString(), kabupaten.getText().toString(),
+                        provinsi.getText().toString());
             }
         });
+
+        return view;
     }
 
     private void createKeluarga(String calamat, String crtrw, String ckodepos, String ckelurahan,
                                 String ckecamatan, String ckabupaten, String cprovinsi){
 
         Call<CUDKeluarga> create = service.createKeluarga(calamat, crtrw, ckodepos, ckelurahan,
-                                                          ckecamatan, ckabupaten, cprovinsi);
+                ckecamatan, ckabupaten, cprovinsi);
 
         create.enqueue(new Callback<CUDKeluarga>() {
             @Override
@@ -70,12 +75,12 @@ public class CreateKeluargaActivity extends AppCompatActivity {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Create Keluarga Berhasil",
+                    Toast.makeText(view.getContext(), "Create Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(CreateKeluargaActivity.this, IndexKeluargaActivity.class));
+                    loadFragment(new AKeluargaFragment());
                 } else {
-                    Toast.makeText(getApplicationContext(), "Create Keluarga Gagal",
+                    Toast.makeText(view.getContext(), "Create Keluarga Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getError().toString());
                 }
@@ -83,10 +88,19 @@ public class CreateKeluargaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CUDKeluarga> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }
         });
     }
+
+    private void loadFragment(Fragment fragment){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
+    }
+
 }

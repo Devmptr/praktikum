@@ -1,41 +1,37 @@
 package com.kelompokv.praktikum.activity.admin.anggota;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.model.admin.User;
-import com.kelompokv.praktikum.model.admin.UserList;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDAnggota;
 import com.kelompokv.praktikum.network.response.SERAnggota;
 import com.kelompokv.praktikum.network.service.AdminService;
 
-import java.io.IOException;
 import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShowAnggotaActivity extends AppCompatActivity {
-    Intent intent;
+public class AAnggotaShowFragment extends Fragment {
+    View view;
     Bundle extras;
     Integer id_anggota, id_keluarga;
     Spinner jenis_kelamin, tipe, validasi;
@@ -44,35 +40,31 @@ public class ShowAnggotaActivity extends AppCompatActivity {
     AdminService service;
     String tfb;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_anggota);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_anggota_show_fragment, container, false);
 
-        intent = getIntent();
-        extras = intent.getExtras();
-        id_anggota = extras.getInt("id_anggota", 0);
-        id_keluarga = extras.getInt("id_keluarga", 0);
+        id_anggota = getArguments().getInt("id_anggota");
+        id_keluarga = getArguments().getInt("id_keluarga");
 
-        nama = findViewById(R.id.aaupdate_nama);
-        tempat_lahir = findViewById(R.id.aaupdate_tempat_lahir);
-        tanggal_lahir = findViewById(R.id.aaupdate_tanggal_lahir);
-        agama = findViewById(R.id.aaupdate_agama);
-        pendidikan = findViewById(R.id.aaupdate_pendidikan);
-        pekerjaan = findViewById(R.id.aaupdate_pekerjaan);
-        ayah = findViewById(R.id.aaupdate_ayah);
-        ibu = findViewById(R.id.aaupdate_ibu);
-        jenis_kelamin = findViewById(R.id.aaupdate_jenis_kelamin);
-        tipe = findViewById(R.id.aaupdate_tipe);
-        validasi = findViewById(R.id.aaupdate_validasi);
-        btn_update = findViewById(R.id.aaupdate_update);
-        btn_delete = findViewById(R.id.aaupdate_delete);
+        nama = view.findViewById(R.id.aaupdate_nama);
+        tempat_lahir = view.findViewById(R.id.aaupdate_tempat_lahir);
+        tanggal_lahir = view.findViewById(R.id.aaupdate_tanggal_lahir);
+        agama = view.findViewById(R.id.aaupdate_agama);
+        pendidikan = view.findViewById(R.id.aaupdate_pendidikan);
+        pekerjaan = view.findViewById(R.id.aaupdate_pekerjaan);
+        ayah = view.findViewById(R.id.aaupdate_ayah);
+        ibu = view.findViewById(R.id.aaupdate_ibu);
+        jenis_kelamin = view.findViewById(R.id.aaupdate_jenis_kelamin);
+        tipe = view.findViewById(R.id.aaupdate_tipe);
+        validasi = view.findViewById(R.id.aaupdate_validasi);
+        btn_update = view.findViewById(R.id.aaupdate_update);
+        btn_delete = view.findViewById(R.id.aaupdate_delete);
         service = Client.getClient().create(AdminService.class);
 
-        Toast.makeText(getApplicationContext(), "id anggota "+id_anggota+"| id keluarga"+id_keluarga,
-                Toast.LENGTH_SHORT).show();
-
         viewAnggota(id_anggota);
+
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +82,130 @@ public class ShowAnggotaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 deleteAnggota(id_anggota);
+            }
+        });
+
+        return view;
+    }
+
+    private void loadFragment(Fragment fragment, @Nullable Bundle mBundle){
+        if(mBundle != null){
+            fragment.setArguments(mBundle);
+        }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
+    }
+
+    private void updateAnggota(Integer id_ang, String cnama, String ctempat, String ctanggal, String cagama,
+                               String cpendidikan, String cpekerjaan, String cayah, String cibu,
+                               String cjenis_kelamin, String ctipe, Integer id_kel, String validasi){
+        Call<CUDAnggota> update = service.updateAnggota(
+                id_ang, cnama, cjenis_kelamin, ctempat, ctanggal, cagama, cpendidikan, cpekerjaan,
+                ctipe, cayah, cibu, id_kel, validasi
+        );
+
+        final String test = validasi;
+
+        update.enqueue(new Callback<CUDAnggota>() {
+            @Override
+            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
+                Log.d("Call request", call.request().toString());
+                Log.d("Call request header", call.request().headers().toString());
+                Log.d("Response raw header", response.headers().toString());
+                Log.d("Response raw", String.valueOf(response.raw().body()));
+                Log.d("Response code", String.valueOf(response.code()));
+
+                if (response.isSuccessful()) {
+                    Toast.makeText(view.getContext(), "Update Anggota Berhasil",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.body().getSuccess().toString());
+                    Log.d("TFB", String.valueOf(tfb.isEmpty()));
+                    if(!tfb.isEmpty()){
+                        sendNotifUpdate("Status Update", "Validasi Anggota : "+test, tfb);
+                    }
+                    extras.putInt("id_keluarga", id_keluarga);
+                    loadFragment(new AAnggotaFragment(), extras);
+                } else {
+                    Toast.makeText(view.getContext(), "Update Anggota Gagal",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CUDAnggota> call, Throwable t) {
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+                Log.d("Response body", t.getMessage());
+            }
+        });
+    }
+
+    private void deleteAnggota(Integer id_ang){
+        Call<CUDAnggota> create = service.deleteAnggota(id_ang);
+
+        create.enqueue(new Callback<CUDAnggota>() {
+            @Override
+            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
+                Log.d("Call request", call.request().toString());
+                Log.d("Call request header", call.request().headers().toString());
+                Log.d("Response raw header", response.headers().toString());
+                Log.d("Response raw", String.valueOf(response.raw().body()));
+                Log.d("Response code", String.valueOf(response.code()));
+
+                if (response.isSuccessful()) {
+                    Toast.makeText(view.getContext(), "Delete Anggota Berhasil",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.body().getSuccess().toString());
+                    extras.putInt("id_keluarga", id_keluarga);
+                    loadFragment(new AAnggotaFragment(), extras);
+                } else {
+                    Toast.makeText(view.getContext(), "Delete Anggota Gagal",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CUDAnggota> call, Throwable t) {
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+                Log.d("Response body", t.getMessage());
+            }
+        });
+    }
+
+    private void sendNotifUpdate(String title, String msg, String token){
+        Call<CUDAnggota> send = service.sendNotifUpdate(title, msg, token);
+
+        send.enqueue(new Callback<CUDAnggota>() {
+            @Override
+            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
+                Log.d("Call request", call.request().toString());
+                Log.d("Call request header", call.request().headers().toString());
+                Log.d("Response raw header", response.headers().toString());
+                Log.d("Response raw", String.valueOf(response.raw().body()));
+                Log.d("Response code", String.valueOf(response.code()));
+
+                if (response.isSuccessful()) {
+                    Toast.makeText(view.getContext(), "Delete Anggota Berhasil",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.body().getSuccess().toString());
+                } else {
+                    Toast.makeText(view.getContext(), "Delete Anggota Gagal",
+                            Toast.LENGTH_SHORT).show();
+                    Log.d("Response body", response.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CUDAnggota> call, Throwable t) {
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+                Log.d("Response body", t.getMessage());
             }
         });
     }
@@ -116,7 +232,7 @@ public class ShowAnggotaActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SERAnggota> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }
@@ -150,118 +266,5 @@ public class ShowAnggotaActivity extends AppCompatActivity {
             }
         }
         return 0;
-    }
-
-    private void updateAnggota(Integer id_ang, String cnama, String ctempat, String ctanggal, String cagama,
-                               String cpendidikan, String cpekerjaan, String cayah, String cibu,
-                               String cjenis_kelamin, String ctipe, Integer id_kel, String validasi){
-        Call<CUDAnggota> update = service.updateAnggota(
-                id_ang, cnama, cjenis_kelamin, ctempat, ctanggal, cagama, cpendidikan, cpekerjaan,
-                ctipe, cayah, cibu, id_kel, validasi
-        );
-
-        final String test = validasi;
-
-        update.enqueue(new Callback<CUDAnggota>() {
-            @Override
-            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
-                Log.d("Call request", call.request().toString());
-                Log.d("Call request header", call.request().headers().toString());
-                Log.d("Response raw header", response.headers().toString());
-                Log.d("Response raw", String.valueOf(response.raw().body()));
-                Log.d("Response code", String.valueOf(response.code()));
-
-                if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Update Anggota Berhasil",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getSuccess().toString());
-                    Log.d("TFB", String.valueOf(tfb.isEmpty()));
-                    if(!tfb.isEmpty()){
-                        sendNotifUpdate("Status Update", "Validasi Anggota : "+test, tfb);
-                    }
-                    intent = new Intent(ShowAnggotaActivity.this, IndexAnggotaActivity.class);
-                    intent.putExtra("id_keluarga", id_keluarga);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Update Anggota Gagal",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.errorBody().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CUDAnggota> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
-                        Toast.LENGTH_SHORT).show();
-                Log.d("Response body", t.getMessage());
-            }
-        });
-    }
-
-    private void deleteAnggota(Integer id_ang){
-        Call<CUDAnggota> create = service.deleteAnggota(id_ang);
-
-        create.enqueue(new Callback<CUDAnggota>() {
-            @Override
-            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
-                Log.d("Call request", call.request().toString());
-                Log.d("Call request header", call.request().headers().toString());
-                Log.d("Response raw header", response.headers().toString());
-                Log.d("Response raw", String.valueOf(response.raw().body()));
-                Log.d("Response code", String.valueOf(response.code()));
-
-                if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Delete Anggota Berhasil",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getSuccess().toString());
-                    intent = new Intent(ShowAnggotaActivity.this, IndexAnggotaActivity.class);
-                    intent.putExtra("id_keluarga", id_keluarga);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Delete Anggota Gagal",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.errorBody().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CUDAnggota> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
-                        Toast.LENGTH_SHORT).show();
-                Log.d("Response body", t.getMessage());
-            }
-        });
-    }
-
-    private void sendNotifUpdate(String title, String msg, String token){
-        Call<CUDAnggota> send = service.sendNotifUpdate(title, msg, token);
-
-        send.enqueue(new Callback<CUDAnggota>() {
-            @Override
-            public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
-                Log.d("Call request", call.request().toString());
-                Log.d("Call request header", call.request().headers().toString());
-                Log.d("Response raw header", response.headers().toString());
-                Log.d("Response raw", String.valueOf(response.raw().body()));
-                Log.d("Response code", String.valueOf(response.code()));
-
-                if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Delete Anggota Berhasil",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getSuccess().toString());
-                } else {
-                    Toast.makeText(getApplicationContext(), "Delete Anggota Gagal",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.errorBody().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CUDAnggota> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
-                        Toast.LENGTH_SHORT).show();
-                Log.d("Response body", t.getMessage());
-            }
-        });
     }
 }

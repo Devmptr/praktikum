@@ -1,60 +1,65 @@
 package com.kelompokv.praktikum.activity.admin.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.model.admin.User;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDUser;
-import com.kelompokv.praktikum.network.response.SERAnggota;
 import com.kelompokv.praktikum.network.response.SERUser;
 import com.kelompokv.praktikum.network.service.AdminService;
-import com.kelompokv.praktikum.network.service.AnggotaService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ShowUserActivity extends AppCompatActivity {
+public class AUserShowFragment extends Fragment {
+    View view;
     Integer id_user, index_spinner;
-    Intent intent;
     AdminService service;
     EditText name, email, password;
     Button btn_update, btn_delete;
     Spinner role;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_user);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_user_show_fragment, container, false);
+        id_user = getArguments().getInt("id");
 
-        intent = getIntent();
-        name = findViewById(R.id.auupdate_name);
-        email = findViewById(R.id.auupdate_email);
-        role = findViewById(R.id.auupdate_role);
-        password = findViewById(R.id.auupdate_password);
-        btn_update = findViewById(R.id.auupdate_update);
-        btn_delete = findViewById(R.id.auupdate_delete);
+        if(id_user != 0){
+            name = view.findViewById(R.id.auupdate_name);
+            email = view.findViewById(R.id.auupdate_email);
+            role = view.findViewById(R.id.auupdate_role);
+            password = view.findViewById(R.id.auupdate_password);
+            btn_update = view.findViewById(R.id.auupdate_update);
+            btn_delete = view.findViewById(R.id.auupdate_delete);
 
-        id_user = intent.getIntExtra("id", 0);
-        service = Client.getClient().create(AdminService.class);
+            service = Client.getClient().create(AdminService.class);
 
-        viewUser(id_user);
+            viewUser(id_user);
+        }
 
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateUser(id_user, name.getText().toString(), email.getText().toString(),
-                           password.getText().toString(), role.getSelectedItem().toString());
+                        password.getText().toString(), role.getSelectedItem().toString());
             }
         });
 
@@ -64,12 +69,20 @@ public class ShowUserActivity extends AppCompatActivity {
                 deleteUser(id_user);
             }
         });
+
+        return view;
+    }
+
+    private void loadFragment(Fragment fragment){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
     }
 
     private void viewUser(Integer id){
-        if(id == 0){
-            startActivity(new Intent(ShowUserActivity.this, IndexUserActivity.class));
-        }else{
+        if(id != 0){
             Call<SERUser> show = service.showUser(id);
             show.enqueue(new Callback<SERUser>() {
                 @Override
@@ -128,20 +141,19 @@ public class ShowUserActivity extends AppCompatActivity {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Update User Berhasil",
+                    Toast.makeText(view.getContext(), "Update User Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(ShowUserActivity.this, IndexUserActivity.class));
+                    loadFragment(new AUserFragment());
                 } else {
-                    Toast.makeText(getApplicationContext(), "Update User Gagal",
+                    Toast.makeText(view.getContext(), "Update User Gagal",
                             Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getError().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<CUDUser> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }
@@ -161,20 +173,19 @@ public class ShowUserActivity extends AppCompatActivity {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Delete User Berhasil",
+                    Toast.makeText(view.getContext(), "Delete User Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(ShowUserActivity.this, IndexUserActivity.class));
+                    loadFragment(new AUserFragment());
                 } else {
-                    Toast.makeText(getApplicationContext(), "Delete User Gagal",
+                    Toast.makeText(view.getContext(), "Delete User Gagal",
                             Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getError().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<CUDUser> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
                 Log.d("Response body", t.getMessage());
             }

@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.model.admin.Keluarga;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class KeluargaAdapter extends ArrayAdapter<Keluarga> {
@@ -34,8 +36,11 @@ public class KeluargaAdapter extends ArrayAdapter<Keluarga> {
         TextView name = (TextView) convertView.findViewById(R.id.item_keluarga_alamat);
         name.setText(keluarga.getAlamat());
 
+        TextView pos = (TextView) convertView.findViewById(R.id.item_keluarga_pos);
+        pos.setText(keluarga.getKodepos());
+
         TextView info = (TextView) convertView.findViewById(R.id.item_keluarga_info);
-        info.setText(keluarga.getKodepos());
+        info.setText(keluarga.getProvinsi());
 
         return convertView;
     }

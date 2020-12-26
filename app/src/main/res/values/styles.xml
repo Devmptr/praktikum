@@ -12,4 +12,10 @@
         <item name="android:textColor">@color/colorBluePrimary</item>
     </style>
 
+    <style name="fabWhite" parent="Widget.AppCompat.Button.Colored">
+        <item name="icon">@drawable/ic_add</item>
+        <item name="iconTint">@color/colorWhitePrimary</item>
+        <item name="backgroundTint">@color/colorBluePrimary</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
 </resources>

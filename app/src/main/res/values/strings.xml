@@ -66,4 +66,5 @@
     <string name="bnav_keluarga">Keluarga</string>
     <string name="bnav_add">Add</string>
     <string name="bnav_logout">Logout</string>
+    <string name="bnav_user">User</string>
 </resources>

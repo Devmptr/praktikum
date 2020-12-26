@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
         android:background="#fff"
         android:foreground="@drawable/ic_item_keluarga"
         android:foregroundGravity="center|right"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp"
+        android:layout_marginBottom="16dp">
 
         <TextView
             android:id="@+id/item_keluarga_alamat"
@@ -22,13 +22,28 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="18sp" />
+            android:textColor="@color/colorBlackPrimary"
+            android:fontFamily="@font/opensans_semibold"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/item_keluarga_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/colorBlackPrimary"
+            android:fontFamily="@font/opensans_regular"
+            android:textSize="16sp"
+            android:layout_marginVertical="8dp"/>
 
         <TextView
             android:id="@+id/item_keluarga_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"
+            android:textColor="@color/colorBlackPrimary"
+            android:fontFamily="@font/opensans_regular"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

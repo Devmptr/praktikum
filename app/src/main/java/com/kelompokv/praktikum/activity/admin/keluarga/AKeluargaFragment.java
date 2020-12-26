@@ -1,26 +1,26 @@
 package com.kelompokv.praktikum.activity.admin.keluarga;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.user.CreateUserActivity;
-import com.kelompokv.praktikum.activity.admin.user.IndexUserActivity;
-import com.kelompokv.praktikum.activity.admin.user.ShowUserActivity;
 import com.kelompokv.praktikum.adapter.KeluargaAdapter;
-import com.kelompokv.praktikum.adapter.UserAdapter;
 import com.kelompokv.praktikum.model.admin.Keluarga;
 import com.kelompokv.praktikum.model.admin.KeluargaList;
-import com.kelompokv.praktikum.model.admin.User;
-import com.kelompokv.praktikum.model.admin.UserList;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.service.AdminService;
 
@@ -30,38 +30,52 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IndexKeluargaActivity extends AppCompatActivity {
+public class AKeluargaFragment extends Fragment {
+    View view;
+
     AdminService service;
     ListView keluarga_list, list_keluarga;
-    Button btn_create;
+    FloatingActionButton btn_create;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_index_keluarga);
-
-        btn_create = findViewById(R.id.a_keluarga_create);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.admin_keluarga_index_fragment, container, false);
 
         loadKeluarga();
 
-        list_keluarga = findViewById(R.id.alist_keluarga);
-
-        btn_create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(IndexKeluargaActivity.this, CreateKeluargaActivity.class));
-            }
-        });
+        list_keluarga = view.findViewById(R.id.alist_keluarga);
+        btn_create = view.findViewById(R.id.btn_akeluarga_add);
 
         list_keluarga.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(IndexKeluargaActivity.this, ShowKeluargaActivity.class);
                 Keluarga item = (Keluarga) adapterView.getItemAtPosition(i);
-                intent.putExtra("id", item.getId());
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", item.getId());
+                loadFragment(new AKeluargaShowFragment(), bundle);
             }
         });
+
+        btn_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadFragment(new AKeluargaCreateFragment(), null);
+            }
+        });
+
+        return view;
+    }
+
+    private void loadFragment(Fragment fragment, @Nullable Bundle mBundle){
+        if(mBundle != null){
+            fragment.setArguments(mBundle);
+        }
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_admin_container, fragment);
+        ft.commit();
     }
 
     private void loadKeluarga(){
@@ -90,8 +104,8 @@ public class IndexKeluargaActivity extends AppCompatActivity {
     }
 
     private void showUser(List<Keluarga> data){
-        KeluargaAdapter adapter = new KeluargaAdapter(this, R.layout.item_keluarga, data);
-        keluarga_list = (ListView) findViewById(R.id.alist_keluarga);
+        KeluargaAdapter adapter = new KeluargaAdapter(view.getContext(), R.layout.item_keluarga, data);
+        keluarga_list = (ListView) view.findViewById(R.id.alist_keluarga);
         keluarga_list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

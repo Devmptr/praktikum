@@ -12,19 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.admin.MainAdmin" android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activity.user.MainUser" android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activity.FirebaseActivity" />
-        <activity android:name=".activity.admin.anggota.ShowAnggotaActivity" />
-        <activity android:name=".activity.admin.anggota.CreateAnggotaActivity" />
-        <activity android:name=".activity.admin.anggota.IndexAnggotaActivity" />
-        <activity android:name=".activity.admin.keluarga.CreateKeluargaActivity" />
-        <activity android:name=".activity.admin.keluarga.ShowKeluargaActivity" />
-        <activity android:name=".activity.admin.keluarga.IndexKeluargaActivity" />
-        <activity android:name=".activity.admin.user.CreateUserActivity" />
-        <activity android:name=".activity.admin.user.ShowUserActivity" />
-        <activity android:name=".activity.admin.user.IndexUserActivity" />
         <activity android:name=".activity.user.FirstLoginActivity" />
-        <activity android:name=".activity.admin.DashboardAdminActivity" />
         <activity android:name=".activity.RegisterActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activity.LoginActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activity.SplashActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
