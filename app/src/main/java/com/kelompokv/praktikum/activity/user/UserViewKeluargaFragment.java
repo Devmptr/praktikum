@@ -1,53 +1,59 @@
 package com.kelompokv.praktikum.activity.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.model.admin.Keluarga;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDKeluarga;
 import com.kelompokv.praktikum.network.response.SERKeluarga;
-import com.kelompokv.praktikum.network.response.SERUser;
 import com.kelompokv.praktikum.network.service.UserService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataKeluargaActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
 
+public class UserViewKeluargaFragment extends Fragment {
+    View view;
     SharedPreferences auth_sp;
     Integer user_id;
     UserService service;
     EditText alamat, rtrw, kodepos, kelurahan, kecamatan, kabupaten, provinsi;
     Button btn_update;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_keluarga);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.user_view_keluarga_fragment, container, false);
 
-        auth_sp = getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
+
+        auth_sp = view.getContext().getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor;
         user_id = auth_sp.getInt("log_id", 0);
         service = Client.getClient().create(UserService.class);
-        alamat = findViewById(R.id.ukeluarga_alamat);
-        rtrw = findViewById(R.id.ukeluarga_rtrw);
-        kodepos = findViewById(R.id.ukeluarga_kodepos);
-        kelurahan = findViewById(R.id.ukeluarga_kelurahan);
-        kecamatan = findViewById(R.id.ukeluarga_kecamatan);
-        kabupaten = findViewById(R.id.ukeluarga_kabupaten);
-        provinsi = findViewById(R.id.ukeluarga_provinsi);
-        btn_update = findViewById(R.id.ukeluarga_update);
+        alamat = view.findViewById(R.id.ukeluarga_alamat);
+        rtrw = view.findViewById(R.id.ukeluarga_rtrw);
+        kodepos = view.findViewById(R.id.ukeluarga_kodepos);
+        kelurahan = view.findViewById(R.id.ukeluarga_kelurahan);
+        kecamatan = view.findViewById(R.id.ukeluarga_kecamatan);
+        kabupaten = view.findViewById(R.id.ukeluarga_kabupaten);
+        provinsi = view.findViewById(R.id.ukeluarga_provinsi);
+        btn_update = view.findViewById(R.id.ukeluarga_update);
 
         viewKeluarga(user_id);
 
@@ -60,13 +66,15 @@ public class DataKeluargaActivity extends AppCompatActivity {
                         provinsi.getText().toString());
             }
         });
+
+        return view;
     }
 
     private void updateKeluarga(Integer uid, String ualamat, String urtrw, String ukodepos,
                                 String ukelurahan, String ukecamatan, String ukabupaten, String uprovinsi){
 
         Call<CUDKeluarga> show = service.updateKeluarga(uid, ualamat, urtrw, ukodepos, ukelurahan,
-                                                        ukecamatan, ukabupaten, uprovinsi);
+                ukecamatan, ukabupaten, uprovinsi);
         show.enqueue(new Callback<CUDKeluarga>() {
             @Override
             public void onResponse(Call<CUDKeluarga> call, Response<CUDKeluarga> response) {
@@ -76,13 +84,12 @@ public class DataKeluargaActivity extends AppCompatActivity {
                 Log.d("Response raw", String.valueOf(response.raw().body()));
                 Log.d("Response code", String.valueOf(response.code()));
                 if(response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Update Keluarga Berhasil",
+                    Toast.makeText(view.getContext(), "Update Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(DataKeluargaActivity.this, MainActivity.class));
                 }
                 else  {
-                    Toast.makeText(getApplicationContext(), "Update Keluarga Gagal",
+                    Toast.makeText(view.getContext(), "Update Keluarga Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.e("Response errorBody", String.valueOf(response.errorBody()));
                 }
@@ -96,9 +103,7 @@ public class DataKeluargaActivity extends AppCompatActivity {
     }
 
     private void viewKeluarga(Integer id){
-        if(id == 0){
-            startActivity(new Intent(DataKeluargaActivity.this, MainActivity.class));
-        }else{
+        if(id != 0){
             Call<SERKeluarga> show = service.showKeluarga(id);
             show.enqueue(new Callback<SERKeluarga>() {
                 @Override

@@ -1,51 +1,54 @@
 package com.kelompokv.praktikum.activity.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.user.IndexUserActivity;
-import com.kelompokv.praktikum.activity.admin.user.ShowUserActivity;
 import com.kelompokv.praktikum.model.admin.User;
 import com.kelompokv.praktikum.network.Client;
 import com.kelompokv.praktikum.network.response.CUDUser;
 import com.kelompokv.praktikum.network.response.SERUser;
-import com.kelompokv.praktikum.network.service.AdminService;
 import com.kelompokv.praktikum.network.service.UserService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProfileActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
 
+public class UserProfileFragment extends Fragment {
+    View view;
     SharedPreferences auth_sp;
     Integer user_id;
     UserService service;
     EditText name, email, password;
     Button btn_update;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.user_profile_fragment, container, false);
 
-        auth_sp = getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
+        auth_sp = view.getContext().getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor;
         user_id = auth_sp.getInt("log_id", 0);
         service = Client.getClient().create(UserService.class);
-        name = findViewById(R.id.profile_name);
-        email = findViewById(R.id.profile_email);
-        password = findViewById(R.id.profile_password);
-        btn_update = findViewById(R.id.btn_profile_update);
+        name = view.findViewById(R.id.profile_name);
+        email = view.findViewById(R.id.profile_email);
+        password = view.findViewById(R.id.profile_password);
+        btn_update = view.findViewById(R.id.btn_profile_update);
 
         viewUser(user_id);
 
@@ -56,9 +59,11 @@ public class ProfileActivity extends AppCompatActivity {
                         password.getText().toString());
             }
         });
+
+        return view;
     }
 
-    public void updateProfile(Integer pid, String pname, String pemail, String ppassword){
+    private void updateProfile(Integer pid, String pname, String pemail, String ppassword){
         Call<CUDUser> show = service.updateUser(pid, pname, pemail, ppassword);
         show.enqueue(new Callback<CUDUser>() {
             @Override
@@ -69,13 +74,12 @@ public class ProfileActivity extends AppCompatActivity {
                 Log.d("Response raw", String.valueOf(response.raw().body()));
                 Log.d("Response code", String.valueOf(response.code()));
                 if(response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Update Profile Berhasil",
+                    Toast.makeText(view.getContext(), "Update Profile Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                 }
                 else  {
-                    Toast.makeText(getApplicationContext(), "Update Profile Gagal",
+                    Toast.makeText(view.getContext(), "Update Profile Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.e("Response errorBody", String.valueOf(response.errorBody()));
                 }
@@ -89,9 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void viewUser(Integer id){
-        if(id == 0){
-            startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-        }else{
+        if(id != 0){
             Call<SERUser> show = service.showUser(id);
             show.enqueue(new Callback<SERUser>() {
                 @Override
@@ -125,6 +127,4 @@ public class ProfileActivity extends AppCompatActivity {
         name.setText(data.getName());
         email.setText(data.getEmail());
     }
-
-
 }

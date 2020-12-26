@@ -1,15 +1,21 @@
 package com.kelompokv.praktikum.activity.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.db.helper.DbHelper;
@@ -25,8 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewAnggota extends AppCompatActivity {
-
+public class UserViewFragment extends Fragment {
+    View view;
     Integer id;
     Spinner u_jenis_kelamin, u_tipe;
     EditText u_nama, u_tempat_lahir, u_tanggal_lahir, u_agama, u_pendidikan, u_pekerjaan, u_ayah, u_ibu;
@@ -34,30 +40,30 @@ public class ViewAnggota extends AppCompatActivity {
     AnggotaService service;
     DbHelper helper;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_anggota);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.user_view_fragment, container, false);
 
-        helper = new DbHelper(this);
+        id = getArguments().getInt("id");
+        if(id != null){
+            viewAnggota(id);
 
-        u_nama = (EditText) findViewById(R.id.u_nama);
-        u_tempat_lahir = (EditText) findViewById(R.id.u_tempat_lahir);
-        u_tanggal_lahir = (EditText) findViewById(R.id.u_tanggal_lahir);
-        u_agama = (EditText) findViewById(R.id.u_agama);
-        u_pendidikan = (EditText) findViewById(R.id.u_pendidikan);
-        u_pekerjaan = (EditText) findViewById(R.id.u_pekerjaan);
-        u_ayah = (EditText) findViewById(R.id.u_ayah);
-        u_ibu = (EditText) findViewById(R.id.u_ibu);
-        u_jenis_kelamin = (Spinner) findViewById(R.id.u_jenis_kelamin);
-        u_tipe = (Spinner) findViewById(R.id.u_tipe);
+            helper = new DbHelper(view.getContext());
 
-        Intent intent = getIntent();
-        id = intent.getIntExtra("id", 0);
+            u_nama = (EditText) view.findViewById(R.id.u_nama);
+            u_tempat_lahir = (EditText) view.findViewById(R.id.u_tempat_lahir);
+            u_tanggal_lahir = (EditText) view.findViewById(R.id.u_tanggal_lahir);
+            u_agama = (EditText) view.findViewById(R.id.u_agama);
+            u_pendidikan = (EditText) view.findViewById(R.id.u_pendidikan);
+            u_pekerjaan = (EditText) view.findViewById(R.id.u_pekerjaan);
+            u_ayah = (EditText) view.findViewById(R.id.u_ayah);
+            u_ibu = (EditText) view.findViewById(R.id.u_ibu);
+            u_jenis_kelamin = (Spinner) view.findViewById(R.id.u_jenis_kelamin);
+            u_tipe = (Spinner) view.findViewById(R.id.u_tipe);
+        }
 
-        viewAnggota(id);
-
-        btn_delete = (Button) findViewById(R.id.btn_delete_anggota);
+        btn_delete = (Button) view.findViewById(R.id.btn_delete_anggota);
         btn_delete.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick (View v) {
@@ -67,12 +73,12 @@ public class ViewAnggota extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Delete Anggota Berhasil",
+                            Toast.makeText(view.getContext(), "Delete Anggota Berhasil",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("Response body", response.body().getSuccess().toString());
-                            startActivity(new Intent(ViewAnggota.this, MainActivity.class));
+                            loadFragment(new UserFragment());
                         } else {
-                            Toast.makeText(getApplicationContext(), "Delete Anggota Gagal",
+                            Toast.makeText(view.getContext(), "Delete Anggota Gagal",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("Response body", response.errorBody().toString());
                         }
@@ -80,7 +86,7 @@ public class ViewAnggota extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<CUDAnggota> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                        Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                                 Toast.LENGTH_SHORT).show();
                         Log.d("Response body", t.getMessage());
                     }
@@ -88,7 +94,7 @@ public class ViewAnggota extends AppCompatActivity {
             }
         });
 
-        btn_update = (Button) findViewById(R.id.btn_update_anggota);
+        btn_update = (Button) view.findViewById(R.id.btn_update_anggota);
         btn_update.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -116,12 +122,12 @@ public class ViewAnggota extends AppCompatActivity {
                         Log.d("Response code", String.valueOf(response.code()));
 
                         if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Update Anggota Berhasil",
+                            Toast.makeText(view.getContext(), "Update Anggota Berhasil",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("Response body", response.body().getSuccess().toString());
-                            startActivity(new Intent(ViewAnggota.this, MainActivity.class));
+                            loadFragment(new UserFragment());
                         } else {
-                            Toast.makeText(getApplicationContext(), "Update Anggota Gagal",
+                            Toast.makeText(view.getContext(), "Update Anggota Gagal",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("Response body", response.errorBody().toString());
                         }
@@ -129,16 +135,26 @@ public class ViewAnggota extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<CUDAnggota> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error Dev "+t.getMessage().toString(),
+                        Toast.makeText(view.getContext(), "Error Dev "+t.getMessage().toString(),
                                 Toast.LENGTH_SHORT).show();
                         Log.d("Response body", t.getMessage());
                     }
                 });
             }
         });
+
+        return view;
     }
 
-    public void viewAnggota(final Integer anggota){
+    private void loadFragment(Fragment fragment){
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.replace(R.id.fl_container, fragment);
+        ft.commit();
+    }
+
+    private void viewAnggota(final Integer anggota){
         service = Client.getClient().create(AnggotaService.class);
         Call<SERAnggota> anggotas = service.editAnggota(anggota);
         anggotas.enqueue(new Callback<SERAnggota>() {
@@ -168,7 +184,7 @@ public class ViewAnggota extends AppCompatActivity {
         });
     }
 
-    public void show(AnggotaKeluarga anggotas){
+    private void show(AnggotaKeluarga anggotas){
         DateFormat date = DateFormat.getDateInstance();
         u_nama.setText(anggotas.getNama());
         u_tempat_lahir.setText(anggotas.getTempatlahir());

@@ -9,15 +9,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.kelompokv.praktikum.R;
-import com.kelompokv.praktikum.activity.admin.keluarga.ShowKeluargaActivity;
-import com.kelompokv.praktikum.activity.user.CreateData;
-import com.kelompokv.praktikum.activity.user.MainActivity;
-import com.kelompokv.praktikum.adapter.UserAdapter;
 import com.kelompokv.praktikum.model.admin.User;
 import com.kelompokv.praktikum.model.admin.UserList;
 import com.kelompokv.praktikum.network.Client;
@@ -25,7 +20,6 @@ import com.kelompokv.praktikum.network.response.CUDAnggota;
 import com.kelompokv.praktikum.network.service.AdminService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.user.ProfileActivity">
-
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhitePrimary">
     <LinearLayout
         android:id="@+id/create_user_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_nama"
+            android:textSize="16dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:textColor="@color/colorBlackPrimary"/>
 
         <EditText
             android:id="@+id/profile_name"
@@ -23,8 +27,16 @@
             android:ems="10"
             android:hint="name"
             android:inputType="textPersonName"
-            android:textColorHint="@color/colorBluePrimary"
+            android:textColor="@color/colorBluePrimary"
             android:backgroundTint="@color/colorBluePrimary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:textColor="@color/colorBlackPrimary"/>
 
         <EditText
             android:id="@+id/profile_email"
@@ -34,8 +46,16 @@
             android:ems="10"
             android:hint="email"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/colorBluePrimary"
+            android:textColor="@color/colorBluePrimary"
             android:backgroundTint="@color/colorBluePrimary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="16dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:textColor="@color/colorBlackPrimary"/>
 
         <EditText
             android:id="@+id/profile_password"
@@ -45,15 +65,15 @@
             android:ems="10"
             android:hint="password"
             android:inputType="textPassword"
-            android:textColorHint="@color/colorBluePrimary"
+            android:textColor="@color/colorBluePrimary"
             android:backgroundTint="@color/colorBluePrimary"/>
 
         <Button
             android:id="@+id/btn_profile_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update Profile"
+            android:text="Save"
             android:textColor="#fff"
-            android:backgroundTint="@color/colorBluePrimary"/>
+            android:background="@drawable/custom_btn_blue"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

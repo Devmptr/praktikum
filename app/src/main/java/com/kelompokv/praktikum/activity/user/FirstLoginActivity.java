@@ -105,7 +105,7 @@ public class FirstLoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Create Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    startActivity(new Intent(FirstLoginActivity.this, MainActivity.class));
+                    startActivity(new Intent(FirstLoginActivity.this, MainUser.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Create Keluarga Gagal",
                             Toast.LENGTH_SHORT).show();

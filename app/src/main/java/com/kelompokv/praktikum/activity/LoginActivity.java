@@ -9,7 +9,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.kelompokv.praktikum.activity.admin.DashboardAdminActivity;
 import com.kelompokv.praktikum.activity.user.FirstLoginActivity;
-import com.kelompokv.praktikum.activity.user.MainActivity;
+import com.kelompokv.praktikum.activity.user.MainUser;
 import com.kelompokv.praktikum.db.helper.DbHelper;
 import com.kelompokv.praktikum.model.auth.FBToken;
 import com.kelompokv.praktikum.network.Client;
@@ -58,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         helper = new DbHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-//        checkAuth();
         getCurrentFirebaseToken();
         Bundle bundle = getIntent().getExtras();
 
@@ -83,30 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
-    }
-
-    private void checkAuth(){
-        auth_sp = getApplicationContext().getSharedPreferences("authSharedPreferences",
-                getApplicationContext().MODE_PRIVATE);
-        Log.e("Response body", auth_sp.getString("token", ""));
-        Log.e("Response body", auth_sp.getString("role", ""));
-        if (auth_sp.contains("token")) {
-            Toast.makeText(getApplicationContext(), "CONTAIN TOKEN",
-                    Toast.LENGTH_SHORT).show();
-            String check_role = auth_sp.getString("role", "");
-            if (check_role.equals("user")){
-                Toast.makeText(getApplicationContext(), "USER",
-                        Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }else if(check_role.equals("admin")){
-                Toast.makeText(getApplicationContext(), "ADMIN",
-                        Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, DashboardAdminActivity.class));
-            }
-        }else{
-            Toast.makeText(getApplicationContext(), "NO CONTAIN",
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void authLogin(String in_email, String in_password){
@@ -137,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(role.equals("user")){
                         Log.d("is Profile", is_profile.toString());
                         if (is_profile) {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MainUser.class));
                         }else{
                             startActivity(new Intent(LoginActivity.this, FirstLoginActivity.class));
                         }
@@ -193,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<FBToken> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error" + t,
+                Toast.makeText(getApplicationContext(), "Error fb token " + t,
                         Toast.LENGTH_SHORT).show();
             }
         });

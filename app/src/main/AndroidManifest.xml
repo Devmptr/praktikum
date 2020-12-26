@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.user.DataKeluargaActivity" />
-        <activity android:name=".activity.user.ProfileActivity" />
+        <activity android:name=".activity.user.MainUser" android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".activity.FirebaseActivity" />
         <activity android:name=".activity.admin.anggota.ShowAnggotaActivity" />
         <activity android:name=".activity.admin.anggota.CreateAnggotaActivity" />
@@ -27,9 +26,6 @@
         <activity android:name=".activity.admin.user.IndexUserActivity" />
         <activity android:name=".activity.user.FirstLoginActivity" />
         <activity android:name=".activity.admin.DashboardAdminActivity" />
-        <activity android:name=".activity.user.ViewAnggota" />
-        <activity android:name=".activity.user.CreateData" />
-        <activity android:name=".activity.user.MainActivity" />
         <activity android:name=".activity.RegisterActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activity.LoginActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".activity.SplashActivity" android:theme="@style/Theme.AppCompat.NoActionBar">

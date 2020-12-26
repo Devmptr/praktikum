@@ -13,15 +13,10 @@ import android.widget.Toast;
 
 import com.kelompokv.praktikum.R;
 import com.kelompokv.praktikum.activity.admin.keluarga.IndexKeluargaActivity;
-import com.kelompokv.praktikum.activity.admin.keluarga.ShowKeluargaActivity;
-import com.kelompokv.praktikum.activity.user.MainActivity;
-import com.kelompokv.praktikum.activity.user.ViewAnggota;
 import com.kelompokv.praktikum.adapter.AdminAnggotaAdapter;
-import com.kelompokv.praktikum.adapter.AnggotaAdapter;
 import com.kelompokv.praktikum.model.user.AnggotaKeluarga;
 import com.kelompokv.praktikum.model.user.AnggotaKeluargaResult;
 import com.kelompokv.praktikum.network.Client;
-import com.kelompokv.praktikum.network.response.SERKeluarga;
 import com.kelompokv.praktikum.network.service.AdminService;
 
 import java.util.List;

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.user.ViewAnggota">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="16dp"
+    tools:context=".activity.user.UserAddAnggotaFragment"
+    android:background="@color/colorWhitePrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:id="@+id/form_create_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/form_group_name"
@@ -33,15 +35,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_nama"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary"  />
 
                 <EditText
-                    android:id="@+id/u_nama"
+                    android:id="@+id/c_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -57,15 +62,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_jenis_kelamin"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary"  />
 
                 <Spinner
-                    android:id="@+id/u_jenis_kelamin"
+                    android:id="@+id/c_jenis_kelamin"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_jenis_kelamin"
                     android:padding="12dp"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:theme="@style/spinnerWhite"
+                    android:backgroundTint="@color/colorBluePrimary" />
             </LinearLayout>
 
             <LinearLayout
@@ -81,15 +88,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tempat_lahir"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary"  />
 
                 <EditText
-                    android:id="@+id/u_tempat_lahir"
+                    android:id="@+id/c_tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,16 +115,19 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tanggal_lahir"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_tanggal_lahir"
+                    android:id="@+id/c_tanggal_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
                     android:hint="YYYY-MM-DD"
-                    android:inputType="date"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="date" />
 
             </LinearLayout>
 
@@ -131,15 +144,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_agama"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_agama"
+                    android:id="@+id/c_agama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,15 +171,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_pendidikan"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_pendidikan"
+                    android:id="@+id/c_pendidikan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,15 +198,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_pekerjaan"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_pekerjaan"
+                    android:id="@+id/c_pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -203,14 +225,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_tipe"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <Spinner
-                    android:id="@+id/u_tipe"
+                    android:id="@+id/c_tipe"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/spinner_tipe"
                     android:padding="12dp"
+                    android:theme="@style/spinnerWhite"
                     android:backgroundTint="@color/colorBluePrimary"/>
             </LinearLayout>
 
@@ -227,15 +251,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_ayah"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_ayah"
+                    android:id="@+id/c_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
             <LinearLayout
@@ -251,42 +278,28 @@
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_ibu"
                     android:textSize="16dp"
-                    android:textColor="@color/colorBlackPrimary"/>
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBlackPrimary" />
 
                 <EditText
-                    android:id="@+id/u_ibu"
+                    android:id="@+id/c_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textColor="@color/colorBluePrimary"
+                    android:backgroundTint="@color/colorBluePrimary"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:backgroundTint="@color/colorBluePrimary"/>
+                    android:inputType="textPersonName" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/form_button"
+            <Button
+                android:id="@+id/btn_create_anggota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_update_anggota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/update_data_placeholder"
-                    android:backgroundTint="@color/colorBluePrimary"
-                    android:textColor="#fff"/>
-
-                <Button
-                    android:id="@+id/btn_delete_anggota"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/delete_data_placeholder"
-                    android:backgroundTint="@color/colorBluePrimary"
-                    android:textColor="#fff"/>
-            </LinearLayout>
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/custom_btn_blue"
+                android:text="@string/add_data_placeholder"
+                android:textColor="#fff" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
