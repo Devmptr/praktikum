@@ -57,7 +57,7 @@ public class AdminAnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
         }else{
             valid.setBackgroundResource(R.drawable.ic_error);
         }
-        
+
         return convertView;
     }
 }

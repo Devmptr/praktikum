@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class UserViewFragment extends Fragment {
     Button btn_update, btn_delete;
     AnggotaService service;
     DbHelper helper;
+    ImageView statvalid;
 
     @Nullable
     @Override
@@ -61,6 +63,7 @@ public class UserViewFragment extends Fragment {
             u_ibu = (EditText) view.findViewById(R.id.u_ibu);
             u_jenis_kelamin = (Spinner) view.findViewById(R.id.u_jenis_kelamin);
             u_tipe = (Spinner) view.findViewById(R.id.u_tipe);
+            statvalid = (ImageView) view.findViewById(R.id.user_view_status_valid);
         }
 
         btn_delete = (Button) view.findViewById(R.id.btn_delete_anggota);
@@ -194,5 +197,16 @@ public class UserViewFragment extends Fragment {
         u_pekerjaan.setText(anggotas.getPekerjaan());
         u_ayah.setText(anggotas.getAyah());
         u_ibu.setText(anggotas.getIbu());
+
+        String getValid = anggotas.getValidated();
+        if(getValid.equals("validated")){
+            statvalid.setImageResource(R.drawable.ic_success);
+        }else if(getValid.equals("process")){
+            statvalid.setImageResource(R.drawable.ic_process);
+        }else if(getValid.equals("problem")){
+            statvalid.setImageResource(R.drawable.ic_error);
+        }else{
+            statvalid.setImageResource(R.drawable.ic_error);
+        }
     }
 }

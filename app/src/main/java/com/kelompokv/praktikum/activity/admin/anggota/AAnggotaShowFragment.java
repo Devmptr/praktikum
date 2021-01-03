@@ -47,6 +47,7 @@ public class AAnggotaShowFragment extends Fragment {
 
         id_anggota = getArguments().getInt("id_anggota");
         id_keluarga = getArguments().getInt("id_keluarga");
+        Log.e("ID KELUARGA", id_keluarga.toString());
 
         nama = view.findViewById(R.id.aaupdate_nama);
         tempat_lahir = view.findViewById(R.id.aaupdate_tempat_lahir);
@@ -108,6 +109,7 @@ public class AAnggotaShowFragment extends Fragment {
         );
 
         final String test = validasi;
+        final Integer idkeluarga = id_kel;
 
         update.enqueue(new Callback<CUDAnggota>() {
             @Override
@@ -117,16 +119,19 @@ public class AAnggotaShowFragment extends Fragment {
                 Log.d("Response raw header", response.headers().toString());
                 Log.d("Response raw", String.valueOf(response.raw().body()));
                 Log.d("Response code", String.valueOf(response.code()));
+                Log.e("ID KELUARGA", String.valueOf(idkeluarga));
 
                 if (response.isSuccessful()) {
                     Toast.makeText(view.getContext(), "Update Anggota Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
                     Log.d("TFB", String.valueOf(tfb.isEmpty()));
+                    System.out.print(String.valueOf(tfb.isEmpty()));
                     if(!tfb.isEmpty()){
                         sendNotifUpdate("Status Update", "Validasi Anggota : "+test, tfb);
                     }
-                    extras.putInt("id_keluarga", id_keluarga);
+                    extras = new Bundle();
+                    extras.putInt("id_keluarga", idkeluarga);
                     loadFragment(new AAnggotaFragment(), extras);
                 } else {
                     Toast.makeText(view.getContext(), "Update Anggota Gagal",
@@ -191,11 +196,11 @@ public class AAnggotaShowFragment extends Fragment {
                 Log.d("Response code", String.valueOf(response.code()));
 
                 if (response.isSuccessful()) {
-                    Toast.makeText(view.getContext(), "Delete Anggota Berhasil",
+                    Toast.makeText(view.getContext(), "Send Notif Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
                 } else {
-                    Toast.makeText(view.getContext(), "Delete Anggota Gagal",
+                    Toast.makeText(view.getContext(), "Send Notif Gagal",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.errorBody().toString());
                 }

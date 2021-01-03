@@ -7,116 +7,123 @@
     tools:context=".activity.admin.user.AUserShowFragment"
     android:background="@color/colorWhitePrimary">
 
-    <LinearLayout
-        android:id="@+id/update_user_wrapper"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_nama"
-            android:textSize="16dp"
-            android:fontFamily="@font/opensans_semibold"
-            android:textColor="@color/colorBlackPrimary"/>
-
-        <EditText
-            android:id="@+id/auupdate_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:ems="10"
-            android:hint="name"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorBluePrimary"
-            android:textColorHint="@color/colorBluePrimary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16dp"
-            android:fontFamily="@font/opensans_semibold"
-            android:textColor="@color/colorBlackPrimary"/>
-        <EditText
-            android:id="@+id/auupdate_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:ems="10"
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/colorBluePrimary"
-            android:textColorHint="@color/colorBluePrimary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password_placeholder"
-            android:textSize="16dp"
-            android:fontFamily="@font/opensans_semibold"
-            android:textColor="@color/colorBlackPrimary"/>
-        <EditText
-            android:id="@+id/auupdate_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:textColor="@color/colorBluePrimary"
-            android:textColorHint="@color/colorBluePrimary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Role"
-            android:textSize="16dp"
-            android:fontFamily="@font/opensans_semibold"
-            android:textColor="@color/colorBlackPrimary"/>
-        <Spinner
-            android:id="@+id/auupdate_role"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/colorBluePrimary"
-            android:entries="@array/spinner_user_role"
-            android:padding="12dp"
-            android:theme="@style/spinnerWhite"
-            android:textColorHint="@color/colorBluePrimary" />
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/update_user_wrapper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <Button
-                android:id="@+id/auupdate_update"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/custom_btn_blue"
-                android:text="Update User"
-                android:textColor="#fff" />
+                android:text="@string/placeholder_nama"
+                android:textSize="16dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:textColor="@color/colorBlackPrimary"/>
 
-            <Button
-                android:id="@+id/auupdate_delete"
+            <EditText
+                android:id="@+id/auupdate_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/custom_btn_blue"
-                android:text="Delete User"
-                android:textColor="#fff" />
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorBluePrimary"
+                android:ems="10"
+                android:hint="name"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorBluePrimary"
+                android:textColorHint="@color/colorBluePrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="16dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:textColor="@color/colorBlackPrimary"/>
+            <EditText
+                android:id="@+id/auupdate_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorBluePrimary"
+                android:ems="10"
+                android:hint="email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorBluePrimary"
+                android:textColorHint="@color/colorBluePrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/password_placeholder"
+                android:textSize="16dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:textColor="@color/colorBlackPrimary"/>
+            <EditText
+                android:id="@+id/auupdate_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorBluePrimary"
+                android:ems="10"
+                android:hint="password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorBluePrimary"
+                android:textColorHint="@color/colorBluePrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Role"
+                android:textSize="16dp"
+                android:fontFamily="@font/opensans_semibold"
+                android:textColor="@color/colorBlackPrimary"/>
+            <Spinner
+                android:id="@+id/auupdate_role"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorBluePrimary"
+                android:entries="@array/spinner_user_role"
+                android:padding="12dp"
+                android:theme="@style/spinnerWhite"
+                android:textColorHint="@color/colorBluePrimary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/auupdate_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/custom_btn_blue"
+                    android:text="Update User"
+                    android:textColor="#fff" />
+
+                <Button
+                    android:id="@+id/auupdate_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/custom_btn_blue"
+                    android:text="Delete User"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

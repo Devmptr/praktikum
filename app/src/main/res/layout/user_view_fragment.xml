@@ -33,6 +33,7 @@
                     android:textColor="@color/colorBlackPrimary"
                     android:textSize="30sp"/>
                 <ImageView
+                    android:id="@+id/user_view_status_valid"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_weight="2"
