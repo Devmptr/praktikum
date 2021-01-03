@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,21 @@ public class AnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
 
         TextView tanggal_lahir = (TextView) convertView.findViewById(R.id.list_info);
         tanggal_lahir.setText(anggota.getStrTanggal());
+
+        TextView role = (TextView) convertView.findViewById(R.id.item_user_type);
+        role.setText(anggota.getTipe());
+
+        ImageView valid = (ImageView) convertView.findViewById(R.id.ic_status_anggota);
+        String getValid = anggota.getValidated();
+        if(getValid.equals("validated")){
+            valid.setBackgroundResource(R.drawable.ic_success);
+        }else if(getValid.equals("process")){
+            valid.setBackgroundResource(R.drawable.ic_process);
+        }else if(getValid.equals("problem")){
+            valid.setBackgroundResource(R.drawable.ic_error);
+        }else{
+            valid.setBackgroundResource(R.drawable.ic_error);
+        }
 
         return convertView;
     }

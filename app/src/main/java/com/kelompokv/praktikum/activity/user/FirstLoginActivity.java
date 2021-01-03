@@ -105,6 +105,12 @@ public class FirstLoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Create Keluarga Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
+
+                    SharedPreferences.Editor editor = auth_sp.edit();
+                    boolean is_profile = true;
+                    editor.putBoolean("is_profile", is_profile);
+                    editor.apply();
+
                     startActivity(new Intent(FirstLoginActivity.this, MainUser.class));
                 } else {
                     Toast.makeText(getApplicationContext(), "Create Keluarga Gagal",

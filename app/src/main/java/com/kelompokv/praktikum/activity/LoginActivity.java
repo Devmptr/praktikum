@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("token", token);
                     editor.putString("role", role);
                     editor.putInt("log_id", user_id);
+                    editor.putBoolean("is_profile", is_profile);
                     editor.apply();
 
                     setFBToken(user_id, token_firebase);
@@ -152,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setFBToken(Integer id_u, String token_fb){
+        Log.d("id fb auth", String.valueOf(id_u));
         Call<FBToken> setToken = service.setFBToken(id_u, token_fb);
 
         setToken.enqueue(new Callback<FBToken>() {

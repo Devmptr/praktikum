@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName;
 public class FBToken {
     @SerializedName("success")
     @Expose
-    private Token success;
+    private String success;
 
-    public  Token getSuccess(){
+    public  String getSuccess(){
         return success;
     }
 }

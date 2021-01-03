@@ -51,6 +51,7 @@ public class UserFragment extends Fragment {
         auth_sp = view.getContext().getSharedPreferences("authSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor;
         user_id = auth_sp.getInt("log_id", 0);
+        Log.e("LOG ID == ", user_id.toString());
         helper = new DbHelper(view.getContext());
         db = helper.getWritableDatabase();
 
@@ -60,10 +61,10 @@ public class UserFragment extends Fragment {
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            AnggotaKeluarga item = (AnggotaKeluarga) adapterView.getItemAtPosition(i);
-            Bundle bundle = new Bundle();
-            bundle.putInt("id", item.getId());
-            loadFragment(new UserViewFragment(), bundle, "Data Anggota Keluarga");
+                AnggotaKeluarga item = (AnggotaKeluarga) adapterView.getItemAtPosition(i);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", item.getId());
+                loadFragment(new UserViewFragment(), bundle, "Data Anggota Keluarga");
             }
         });
 
@@ -93,7 +94,7 @@ public class UserFragment extends Fragment {
 
                         show(response.body().getAnggota());
                     } else  {
-                        Log.e("Response errorBody", String.valueOf(response.errorBody()));
+                        Log.e("Response errorBody user", String.valueOf(response.errorBody()));
                     }
                 }
 

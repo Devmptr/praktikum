@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,18 @@ public class AdminAnggotaAdapter extends ArrayAdapter<AnggotaKeluarga> {
         DateFormat date = DateFormat.getDateInstance();
         info.setText(date.format(anggota.getTanggallahir()).toString());
 
+        ImageView valid = (ImageView) convertView.findViewById(R.id.ic_status_anggota);
+        String getValid = anggota.getValidated();
+        if(getValid.equals("validated")){
+            valid.setBackgroundResource(R.drawable.ic_success);
+        }else if(getValid.equals("process")){
+            valid.setBackgroundResource(R.drawable.ic_process);
+        }else if(getValid.equals("problem")){
+            valid.setBackgroundResource(R.drawable.ic_error);
+        }else{
+            valid.setBackgroundResource(R.drawable.ic_error);
+        }
+        
         return convertView;
     }
 }
