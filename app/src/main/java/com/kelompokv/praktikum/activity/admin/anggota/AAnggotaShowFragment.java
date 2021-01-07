@@ -109,7 +109,7 @@ public class AAnggotaShowFragment extends Fragment {
         );
 
         final String test = validasi;
-        final Integer idkeluarga = id_kel;
+        final Integer idkeluarga = this.id_keluarga;
 
         update.enqueue(new Callback<CUDAnggota>() {
             @Override
@@ -152,6 +152,8 @@ public class AAnggotaShowFragment extends Fragment {
     private void deleteAnggota(Integer id_ang){
         Call<CUDAnggota> create = service.deleteAnggota(id_ang);
 
+        final int idkl = this.id_keluarga;
+
         create.enqueue(new Callback<CUDAnggota>() {
             @Override
             public void onResponse(Call<CUDAnggota> call, Response<CUDAnggota> response) {
@@ -165,7 +167,8 @@ public class AAnggotaShowFragment extends Fragment {
                     Toast.makeText(view.getContext(), "Delete Anggota Berhasil",
                             Toast.LENGTH_SHORT).show();
                     Log.d("Response body", response.body().getSuccess().toString());
-                    extras.putInt("id_keluarga", id_keluarga);
+                    extras = new Bundle();
+                    extras.putInt("id_keluarga", idkl);
                     loadFragment(new AAnggotaFragment(), extras);
                 } else {
                     Toast.makeText(view.getContext(), "Delete Anggota Gagal",
