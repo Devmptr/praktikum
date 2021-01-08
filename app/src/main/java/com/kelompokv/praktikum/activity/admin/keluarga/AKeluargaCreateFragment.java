@@ -73,16 +73,21 @@ public class AKeluargaCreateFragment extends Fragment {
                 Log.d("Response raw header", response.headers().toString());
                 Log.d("Response raw", String.valueOf(response.raw().body()));
                 Log.d("Response code", String.valueOf(response.code()));
-
-                if (response.isSuccessful()) {
-                    Toast.makeText(view.getContext(), "Create Keluarga Berhasil",
+                String code = String.valueOf(response.code());
+                if(code.equals("401")){
+                    Toast.makeText(view.getContext(), "Harap Isi Form dengan Lengkap",
                             Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getSuccess().toString());
-                    loadFragment(new AKeluargaFragment());
-                } else {
-                    Toast.makeText(view.getContext(), "Create Keluarga Gagal",
-                            Toast.LENGTH_SHORT).show();
-                    Log.d("Response body", response.body().getError().toString());
+                }else{
+                    if (response.isSuccessful()) {
+                        Toast.makeText(view.getContext(), "Create Keluarga Berhasil",
+                                Toast.LENGTH_SHORT).show();
+                        Log.d("Response body", response.body().getSuccess().toString());
+                        loadFragment(new AKeluargaFragment());
+                    } else {
+                        Toast.makeText(view.getContext(), "Create Keluarga Gagal",
+                                Toast.LENGTH_SHORT).show();
+                        Log.d("Response body", response.body().getError().toString());
+                    }
                 }
             }
 
